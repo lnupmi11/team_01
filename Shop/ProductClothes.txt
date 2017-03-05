@@ -1,0 +1,4 @@
+3
+dress famale 34 99
+T-Shirt man 42 78.99
+jacket man 43 100
