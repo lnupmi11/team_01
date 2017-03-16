@@ -1,13 +1,6 @@
-#include<iostream>
-#include<string>
-#include"Data.h"
+#include "BL\BL.h"
 
-using namespace std;
-
-void main()
+int main()
 {
-	ProductClothes* products = LoadProductClothes("ProductClothes.txt");
-
-	SaveProductsToFile(products, "ProductClothesOut.txt");
-	system("pause");
+	createNewUser();
 }
