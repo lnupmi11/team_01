@@ -146,11 +146,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BL\BL.cpp" />
+    <ClCompile Include="DTO\User_DTO.cpp" />
+    <ClCompile Include="Entity\User.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ProductClothes.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Data.h" />
+    <ClInclude Include="BL\BL.h" />
+    <ClInclude Include="DTO\User_DTO.h" />
+    <ClInclude Include="Entity\User.h" />
     <ClInclude Include="ProductClothes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

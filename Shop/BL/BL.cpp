@@ -16,5 +16,12 @@ void createNewUser()
 	cout << "Enter password\n";
 	cin >> password;
 	User user(firstName, lastName, login, password);
-	saveNewUser(user);
+	if (existenceLogin(login))
+	{
+		saveNewUser(user);
+	}
+	else
+	{
+		cout << "Error! This login already exist\n";
+	}
 }

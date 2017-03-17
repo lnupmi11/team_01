@@ -19,13 +19,28 @@
     <ClCompile Include="ProductClothes.cpp">
       <Filter>Entity</Filter>
     </ClCompile>
+    <ClCompile Include="BL\BL.cpp">
+      <Filter>BL</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\User.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="DTO\User_DTO.cpp">
+      <Filter>DTO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Data.h">
-      <Filter>DTO</Filter>
-    </ClInclude>
     <ClInclude Include="ProductClothes.h">
       <Filter>DTO</Filter>
+    </ClInclude>
+    <ClInclude Include="BL\BL.h">
+      <Filter>BL</Filter>
+    </ClInclude>
+    <ClInclude Include="DTO\User_DTO.h">
+      <Filter>DTO</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\User.h">
+      <Filter>Entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

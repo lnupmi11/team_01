@@ -3,4 +3,6 @@
 int main()
 {
 	createNewUser();
+	system("pause");
+	return 0;
 }
