@@ -16,9 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ProductClothes.cpp">
-      <Filter>Entity</Filter>
-    </ClCompile>
     <ClCompile Include="BL\BL.cpp">
       <Filter>BL</Filter>
     </ClCompile>
@@ -28,7 +25,15 @@
     <ClCompile Include="DTO\User_DTO.cpp">
       <Filter>DTO</Filter>
     </ClCompile>
-    <ClCompile Include="Sweater.cpp" />
+    <ClCompile Include="Entity\ProductClothes.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\Sweater.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\Shirt.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BL\BL.h">
@@ -40,10 +45,13 @@
     <ClInclude Include="Entity\User.h">
       <Filter>Entity</Filter>
     </ClInclude>
-    <ClInclude Include="ProductClothes.h">
+    <ClInclude Include="Entity\ProductClothes.h">
       <Filter>Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Sweater.h">
+    <ClInclude Include="Entity\Shirt.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\Sweater.h">
       <Filter>Entity</Filter>
     </ClInclude>
   </ItemGroup>
