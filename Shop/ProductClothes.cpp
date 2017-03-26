@@ -1,70 +1,58 @@
-#include<iostream>
-#include<string>
-#include<fstream>
+#pragma once
 #include"ProductClothes.h"
-
-using namespace std;
-
 
 ProductClothes::ProductClothes()
 {
-	type = "T-Shirt";
-	sex = "man";
-	size = 40;
-	price = 100;
+	 sex="male";
+	 size ="L";
+	 price=100.50;
+	 amount =0;
 };
-ProductClothes::ProductClothes(string typeVal, string sexVal, int sizeVal, double priceVal)
+
+ProductClothes::ProductClothes(string aSex, string aSize, double aPrice, int aAmount)
 {
-	type = typeVal;
-	sex = sexVal;
-	size = sizeVal;
-	price = priceVal;
+	sex = aSex;
+	size = aSize;
+	price = aPrice;
+	amount = aAmount;
 };
-void ProductClothes::setType(string newType)
+
+void ProductClothes::setSize(string aSize)
 {
-	type = newType;
+	size = aSize;
 };
-void ProductClothes::setSize(int sizeVal)
-{
-	size = sizeVal;
-};
+
 void ProductClothes::setPrice(double priceVal)
 {
 	price = priceVal;
 };
-string ProductClothes::getType()
+
+void ProductClothes::setSex(string aSex)
 {
-	return type;
-};
+	sex = aSex;
+}
+
+void ProductClothes::setAmount(int aAmount)
+{
+	amount = aAmount;
+}
+
 string ProductClothes::getSex()
 {
 	return sex;
 };
-int ProductClothes::getSize()
+
+string ProductClothes::getSize()
 {
 	return size;
 };
+
 double ProductClothes::getPrice()
 {
 	return price;
 };
- istream& operator >> (istream&is, ProductClothes&x)
+
+int ProductClothes::getAmount()
 {
-	is >> x.type >> x.sex >> x.size >> x.price;
-	return is;
-};
- ifstream& operator >> (ifstream&is, ProductClothes&x)
-{
-	is >> x.type >> x.sex >> x.size >> x.price;
-	return is;
-};
- ostream& operator<<(ostream&os, const ProductClothes&x)
-{
-	os << x.type << " " << x.sex << " " << x.size << " " << x.price << endl;
-	return os;
-};
-ofstream& operator<<(ofstream&os, const ProductClothes&x)
-{
-	os << x.type << " " << x.sex << " " << x.size << " " << x.price << endl;
-	return os;
-};
+	return amount;
+}
