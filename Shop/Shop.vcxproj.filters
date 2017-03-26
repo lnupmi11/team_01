@@ -28,11 +28,9 @@
     <ClCompile Include="DTO\User_DTO.cpp">
       <Filter>DTO</Filter>
     </ClCompile>
+    <ClCompile Include="Sweater.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ProductClothes.h">
-      <Filter>DTO</Filter>
-    </ClInclude>
     <ClInclude Include="BL\BL.h">
       <Filter>BL</Filter>
     </ClInclude>
@@ -40,6 +38,12 @@
       <Filter>DTO</Filter>
     </ClInclude>
     <ClInclude Include="Entity\User.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="ProductClothes.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Sweater.h">
       <Filter>Entity</Filter>
     </ClInclude>
   </ItemGroup>

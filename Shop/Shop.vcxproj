@@ -151,12 +151,14 @@
     <ClCompile Include="Entity\User.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ProductClothes.cpp" />
+    <ClCompile Include="Sweater.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BL\BL.h" />
     <ClInclude Include="DTO\User_DTO.h" />
     <ClInclude Include="Entity\User.h" />
     <ClInclude Include="ProductClothes.h" />
+    <ClInclude Include="Sweater.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
