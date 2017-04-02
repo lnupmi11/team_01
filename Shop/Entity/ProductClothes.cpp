@@ -1,4 +1,6 @@
 #pragma once
+#include<iostream>
+#include <typeinfo>
 #include"ProductClothes.h"
 
 ProductClothes::ProductClothes()
@@ -16,13 +18,19 @@ ProductClothes::ProductClothes(string aSex, string aSize, double aPrice, int aAm
 	price = aPrice;
 	amount = aAmount;
 };
-ProductClothes::ProductClothes(ProductClothes & obj)
+ProductClothes::ProductClothes(const ProductClothes & obj)
 {
+	type = obj.type;
 	sex = obj.sex;
 	size = obj.size;
 	price = obj.price;
 	amount = obj.amount;
 }
+
+void ProductClothes::setType(string newType)
+{
+	type = newType;
+};
 
 void ProductClothes::setSize(string aSize)
 {
@@ -59,7 +67,43 @@ double ProductClothes::getPrice()
 	return price;
 };
 
+string ProductClothes::getType()
+{
+	return type;
+}; 
+
 int ProductClothes::getAmount()
 {
 	return amount;
 }
+
+string ProductClothes::getFieldsName()
+{
+	return "sex, size, price, amount";
+};
+
+void ProductClothes::input(istream& is)
+{
+	is /*>> type*/ >> sex >> size >> price >> amount;
+}
+void ProductClothes::print(ostream& os) const
+{
+	os << type << " " << sex << " " << size << " " << price << " " << amount;
+}
+
+istream& operator >> (istream&is, ProductClothes&x)
+{
+	if (typeid(is) == typeid(istream))
+	{
+		cout << "Input " << x.getFieldsName() << endl;
+	}
+	x.input(is);
+	return is;
+};
+
+ostream& operator<<(ostream&os, const ProductClothes&x)
+{
+	x.print(os);
+	os << endl;
+	return os;
+};

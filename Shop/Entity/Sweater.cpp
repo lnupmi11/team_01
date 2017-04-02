@@ -2,31 +2,41 @@
 
 Sweater::Sweater()
 {
+	type = "sweater";
 	color = "blue";
 	type = "jumper";
 }
 
-Sweater::Sweater(ProductClothes &p, string aColor, string aType):ProductClothes(p)
+Sweater::Sweater(ProductClothes &p, string aColor):ProductClothes(p)
 {
 	color = aColor;
-	type = aType;
 }
 void Sweater::setColor(string aColor)
 {
 	color = aColor;
 }
 
-void Sweater::setType(string aType)
-{
-	type = aType;
-}
-
-string Sweater::geteColor()
+string Sweater::getColor()
 {
 	return color;
 }
 
-string Sweater::getType()
+string Sweater::getFieldsName()
 {
-	return type;
+	string str = ProductClothes::getFieldsName();
+	str += ", color";
+	return str;
 }
+
+void Sweater::input(istream& is)
+{
+	ProductClothes::input(is);
+	is >> color;
+}
+
+void Sweater::print(ostream& os) const
+{
+	ProductClothes::print(os);
+	os << color ;
+}
+

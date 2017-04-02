@@ -3,6 +3,7 @@
 
 Shirt::Shirt()
 {
+	type = "shirt";
 	color = "white";
 	style = "none";
 }
@@ -31,4 +32,23 @@ string Shirt::getColor()
 string Shirt::getStyle()
 {
 	return style;
+}
+
+string Shirt::getFieldsName()
+{
+	string str = ProductClothes::getFieldsName();
+	str += ", color, style";
+	return str;
+}
+
+void Shirt::input(istream& is)
+{
+	ProductClothes::input(is);
+	is >> color >> style;
+}
+
+void Shirt::print(ostream& os) const
+{
+	ProductClothes::print(os);
+	os << color << style;
 }

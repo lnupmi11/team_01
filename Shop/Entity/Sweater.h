@@ -4,13 +4,14 @@ class Sweater: public ProductClothes
 {
 protected:
 	string color;
-	string type;
 public:
 	Sweater();
-	Sweater(ProductClothes &p, string aColor, string aType);
+	Sweater(ProductClothes &p, string aColor);
 
 	void setColor(string aColor);
-	void setType(string aType);
-	string geteColor();
-	string getType();
+	string getColor();
+
+	string getFieldsName();
+	void input(istream& is);
+	void print(ostream& os) const;
 };
