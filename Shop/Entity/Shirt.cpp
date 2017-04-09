@@ -52,3 +52,9 @@ void Shirt::print(ostream& os) const
 	ProductClothes::print(os);
 	os << color << style;
 }
+
+bool Shirt::operator==(const Shirt& shirt)
+{
+	return this->sex == shirt.sex && this->size == shirt.size
+		&&this->color == shirt.color && this->style == shirt.style;
+}

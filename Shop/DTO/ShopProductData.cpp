@@ -64,3 +64,11 @@ void SaveProductsToFile(vector<ProductClothes> clothes, string fileName)
 	}
 	fileOut.close();
 }
+
+void saveProductToFile(ProductClothes clothes, string filename)
+{
+	ofstream output;
+	output.open("User\\" + filename + ".txt", ios_base::app);
+	output << clothes;
+	output.close();
+}

@@ -6,13 +6,15 @@ User::User()
 	this->lastName = "";
 	this->login = "";
 	this->password = "";
+	this->isAdmin = false;
 }
-User::User(string firstName, string lastName, string login, string password)
+User::User(string firstName, string lastName, string login, string password, bool admin)
 {
 	this->firstName = firstName;
 	this->lastName = lastName;
 	this->login = login;
 	this->password = password;
+	this->isAdmin = admin;
 }
 User::User(const User& user)
 {
@@ -21,6 +23,14 @@ User::User(const User& user)
 	this->login = user.login;
 	this->password = user.password;
 }
+string User::getFirstName()
+{
+	return this->firstName;
+}
+string User::getLastName()
+{
+	return this->lastName;
+}
 string User::getLogin()
 {
 	return this->login;
@@ -28,4 +38,8 @@ string User::getLogin()
 string User::getPassword()
 {
 	return this->password;
+}
+bool User::getAdmin()
+{
+	return this->isAdmin;
 }

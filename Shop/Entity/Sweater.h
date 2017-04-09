@@ -14,4 +14,6 @@ public:
 	string getFieldsName();
 	void input(istream& is);
 	void print(ostream& os) const;
+
+	bool operator==(const Sweater& sweater);
 };

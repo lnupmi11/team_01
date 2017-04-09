@@ -22,4 +22,5 @@ public:
 	void input(istream& is);
 	void print(ostream& os) const;
 
+	bool operator==(const Shirt& shirt);
 };

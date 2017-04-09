@@ -6,6 +6,13 @@ void saveNewUser(User object)
 	input.open("User\\users.txt", ios_base::app);
 	input << object.getLogin() << " " << object.getPassword() << "\n";
 	input.close();
+	input.open("User\\" + object.getLogin() + ".txt", ios_base::app);
+	input << object.getFirstName() << endl;
+	input << object.getLastName() << endl;
+	input << object.getLogin() << endl;
+	input << object.getPassword() << endl;
+	input << (int)object.getAdmin() << endl;
+	input.close();
 }
 
 bool existenceLogin(string login)
@@ -27,3 +34,33 @@ bool existenceLogin(string login)
 	}
 	return true;
 }
+
+bool checkLogin(string log, string password)
+{
+	string addition = log;
+	addition += ' ';
+	addition += password;
+	ifstream input("User\\users.txt");
+	for (string line; getline(input, line); )
+	{
+		if (addition == line)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+void printInfo(User& user)
+{
+	ifstream is;
+	is.open("User\\" + user.getLogin() + ".txt");
+	string line;
+	while (!is.eof())
+	{
+		getline(is, line);
+		cout << line << endl;
+	}
+}
+

@@ -1,7 +1,7 @@
 #include "BL.h"
 #include <iostream>
 
-void createNewUser()
+User createNewUser()
 {
 	string firstName;
 	string lastName;
@@ -15,13 +15,38 @@ void createNewUser()
 	cin >> login;
 	cout << "Enter password\n";
 	cin >> password;
-	User user(firstName, lastName, login, password);
+	User user(firstName, lastName, login, password, 0);
 	if (existenceLogin(login))
 	{
 		saveNewUser(user);
+		return user;
 	}
 	else
 	{
 		cout << "Error! This login already exist\n";
 	}
+}
+
+User login()
+{
+	cout << "Enter login" << endl;
+	string log;
+	cin >> log;
+	cout << "Enter password" << endl;
+	string password;
+	cin >> password;
+	if (checkLogin(log, password))
+	{
+		ifstream is;
+		is.open("User\\" + log + ".txt");
+		string fname;
+		getline(is, fname);
+		string lname;
+		getline(is, lname);
+		string isAdmin;
+		getline(is, isAdmin);
+		is.close();
+		return User(fname, lname, log, password, stoi(isAdmin));
+	}
+	return User();
 }

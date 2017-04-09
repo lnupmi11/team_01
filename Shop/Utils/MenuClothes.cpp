@@ -7,7 +7,8 @@
 
 MenuClothes::MenuClothes()
 {
-	loadClothes();
+	string filename = "DataShop.txt";
+	loadClothes(filename);
 }
 
 MenuClothes::MenuClothes(const MenuClothes &menu)
@@ -15,10 +16,10 @@ MenuClothes::MenuClothes(const MenuClothes &menu)
 	arrClothes = menu.arrClothes;
 }
 
-void MenuClothes::loadClothes()
+
+void MenuClothes::loadClothes(string filename)
 {
-	string fileName="DataShop.txt";
-	arrClothes = LoadProductClothes(fileName);
+	arrClothes = LoadProductClothes(filename);
 }
 
 void MenuClothes::saveClothes()
@@ -26,10 +27,49 @@ void MenuClothes::saveClothes()
 	SaveProductsToFile(arrClothes, "DataShopOutPut.txt");
 }
 
-void MenuClothes::clothesMenu()
+void MenuClothes:: startMenu()
 {
 	int choose;
-	printMenuClothesHeader();
+	printStartMenu();
+	cin >> choose;
+	switch (choose)
+	{
+	case 1:
+	{
+		User user = login();
+		if (user.getAdmin())
+		{
+			adminMenu();
+		}
+		else
+		{
+			userMenu(user);
+		}
+		break;
+	}
+	case 2:
+	{
+		User user = createNewUser();
+		userMenu(user);
+	}
+	default:
+		return;
+		break;
+	}
+}
+
+
+void MenuClothes::printStartMenu()
+{
+	cout << "1: Login" << endl;
+	cout << "2: Create account" << endl;
+	cout << "0: Exit" << endl;
+}
+
+void MenuClothes::adminMenu()
+{
+	int choose;
+	printAdminMenu();
 	cin >> choose;
 	while (choose != 0)
 	{
@@ -62,7 +102,7 @@ void MenuClothes::clothesMenu()
 			cout << "Wrong choise!!! Try again" << endl;
 			break;
 		}
-		printMenuClothesHeader();
+		printAdminMenu();
 		cin >> choose;
 	}
 }
@@ -118,8 +158,7 @@ ProductClothes MenuClothes::addClothe()
 
 	}
 }
-
-void MenuClothes::printMenuClothesHeader()
+void MenuClothes::printAdminMenu()
 {
 	cout << endl;
 	cout << "1: input clothe" << endl;
@@ -127,6 +166,15 @@ void MenuClothes::printMenuClothesHeader()
 	cout << "3: delete clothe" << endl;
 	cout << "4: update" << endl;
 	cout << "0: exit" << endl;
+}
+
+void MenuClothes::printUserMenu()
+{
+	cout << endl;
+	cout << "1: View list of clothes" << endl;
+	cout << "2:Add clothes to cart" << endl;
+	cout << "3:View my info" << endl;
+	cout << "0:exit" << endl;
 }
 
 void MenuClothes::deleteClothe()
@@ -162,6 +210,28 @@ void MenuClothes::update()
 	}
 	cout << "Not found this clothe" << endl;
 }
+
+bool MenuClothes::isClothesAvailable(ProductClothes clothes)
+{
+	string typeOfClothe;
+	for (int i = 0; i < arrClothes.size(); i++)
+	{
+		if (typeOfClothe == arrClothes[i].getType())
+		{
+			if (clothes == arrClothes[i])
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+void MenuClothes::addToCart(ProductClothes product,  User& user)
+{
+	saveProductToFile(product, user.getLogin());
+}
+
 void MenuClothes::printClothes()
 {
 	if (this->arrClothes.size() == 0)
@@ -171,5 +241,46 @@ void MenuClothes::printClothes()
 	for (int i = 0; i < this->arrClothes.size(); i++)
 	{
 		cout << this->arrClothes[i];
+	}
+}
+
+void MenuClothes::userMenu( User& user)
+{
+	int choose;
+	printUserMenu();
+	cin >> choose;
+	while (choose != 0)
+	{
+		switch (choose)
+		{
+		case 1: 
+		{
+			printClothes();
+			break;
+		}
+		case 2: 
+		{
+			ProductClothes clothes = addClothe();
+			if (isClothesAvailable(clothes))
+			{
+				addToCart(clothes, user);
+			}
+			else
+			{
+				cout << "Sorry, we don't have this item." << endl;
+			}
+			break;
+		}
+		case 3:
+		{
+			printInfo(user);
+			break;
+		}
+		default:
+			cout << "Wrong choise!!! Try again" << endl;
+			break;
+		}
+		printUserMenu();
+		cin >> choose;
 	}
 }

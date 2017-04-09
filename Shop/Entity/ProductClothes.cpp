@@ -107,3 +107,9 @@ ostream& operator<<(ostream&os, const ProductClothes&x)
 	os << endl;
 	return os;
 };
+
+bool ProductClothes::operator==(const ProductClothes& pr)
+{
+	return this->sex == pr.sex && this->size == pr.size
+		&& this->price == pr.price && this->type == pr.type;
+}

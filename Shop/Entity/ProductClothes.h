@@ -35,5 +35,6 @@ public:
 	friend istream& operator >> (istream&is, ProductClothes&x);
 	friend ostream& operator<<(ostream&os, const ProductClothes&x);
 	
+	bool operator==(const ProductClothes& pr);
 };
 

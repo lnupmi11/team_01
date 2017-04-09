@@ -34,3 +34,9 @@ void Bag::print(ostream& os) const
 	ProductClothes::print(os);
 	os << brand;
 }
+
+bool Bag:: operator==(const Bag& bag)
+{
+	return this->sex == bag.sex && this->size == bag.size
+		&&this->brand == bag.brand;
+}

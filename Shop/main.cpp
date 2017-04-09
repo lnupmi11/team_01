@@ -1,11 +1,10 @@
-#include "BL\BL.h"
+#include "BL/BL.h"
 #include "../Shop/Utils/MenuClothes.h"
 
 int main()
 {
-	createNewUser();
 	MenuClothes menuClothes;
-	menuClothes.clothesMenu();
+	menuClothes.startMenu();
 	system("pause");
 	return 0;
 }

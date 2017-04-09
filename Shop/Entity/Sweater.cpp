@@ -40,3 +40,9 @@ void Sweater::print(ostream& os) const
 	os << color ;
 }
 
+bool Sweater::operator==(const Sweater& sweater)
+{
+	return this->sex == sweater.sex && this->size == sweater.size
+		&&this->color == sweater.color && this->type == sweater.type;
+}
+

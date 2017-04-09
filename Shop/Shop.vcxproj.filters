@@ -34,6 +34,18 @@
     <ClCompile Include="Entity\Shirt.cpp">
       <Filter>Entity</Filter>
     </ClCompile>
+    <ClCompile Include="Utils\MenuClothes.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\Bag.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\Dress.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="DTO\ShopProductData.cpp">
+      <Filter>DTO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BL\BL.h">
@@ -53,6 +65,18 @@
     </ClInclude>
     <ClInclude Include="Entity\Sweater.h">
       <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\MenuClothes.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\Bag.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\Dress.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="DTO\ShopProductData.h">
+      <Filter>DTO</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
