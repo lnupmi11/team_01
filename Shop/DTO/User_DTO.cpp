@@ -9,8 +9,6 @@ void saveNewUser(User object)
 	input.open("User\\" + object.getLogin() + ".txt", ios_base::app);
 	input << object.getFirstName() << endl;
 	input << object.getLastName() << endl;
-	input << object.getLogin() << endl;
-	input << object.getPassword() << endl;
 	input << (bool)object.getAdmin() << endl;
 	input.close();
 }
