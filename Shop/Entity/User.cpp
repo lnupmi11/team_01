@@ -22,6 +22,7 @@ User::User(const User& user)
 	this->lastName = user.lastName;
 	this->login = user.login;
 	this->password = user.password;
+	this->isAdmin = user.isAdmin;
 }
 string User::getFirstName()
 {

@@ -46,7 +46,12 @@ User login()
 		string isAdmin;
 		getline(is, isAdmin);
 		is.close();
-		return User(fname, lname, log, password, stoi(isAdmin));
+		bool temp = false;
+		if (isAdmin == "1")
+		{
+			temp = true;
+		}
+		return User(fname, lname, log, password, temp);
 	}
 	return User();
 }

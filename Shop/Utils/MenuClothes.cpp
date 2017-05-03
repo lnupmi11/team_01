@@ -37,13 +37,24 @@ void MenuClothes:: startMenu()
 	case 1:
 	{
 		User user = login();
-		if (user.getAdmin())
+		if (user.getFirstName() != "")
 		{
-			adminMenu();
+			cout << "Your login is successful !\n";
+			if (user.getAdmin())
+			{
+				adminMenu();
+			}
+			else
+			{
+
+				userMenu(user);
+			}
+			
 		}
 		else
 		{
-			userMenu(user);
+			cout << "You entered invalid data! \n";
+			startMenu();
 		}
 		break;
 	}

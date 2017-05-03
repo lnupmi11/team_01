@@ -11,7 +11,7 @@ void saveNewUser(User object)
 	input << object.getLastName() << endl;
 	input << object.getLogin() << endl;
 	input << object.getPassword() << endl;
-	input << (int)object.getAdmin() << endl;
+	input << (bool)object.getAdmin() << endl;
 	input.close();
 }
 
