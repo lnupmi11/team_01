@@ -4,6 +4,7 @@
 #include "../Entity/Dress.h"
 #include "../Entity/Shirt.h"
 #include "../Entity/Sweater.h"
+#include "../Entity/Jacket.h"
 
 MenuClothes::MenuClothes()
 {
@@ -13,18 +14,24 @@ MenuClothes::MenuClothes()
 
 MenuClothes::MenuClothes(const MenuClothes &menu)
 {
-	arrClothes = menu.arrClothes;
+	stock = menu.stock;
 }
-
 
 void MenuClothes::loadClothes(string filename)
 {
-	arrClothes = LoadProductClothes(filename);
+	stock = LoadClothesFromFile(filename);
 }
 
 void MenuClothes::saveClothes()
 {
-	SaveProductsToFile(arrClothes, "DataShopOutPut.txt");
+	SaveProductsToFile(stock, "DataShop.txt");
+}
+
+void MenuClothes::printStartMenu()
+{
+	cout << "1: Login" << endl;
+	cout << "2: Create account" << endl;
+	cout << "0: Exit" << endl;
 }
 
 void MenuClothes:: startMenu()
@@ -46,10 +53,8 @@ void MenuClothes:: startMenu()
 			}
 			else
 			{
-
 				userMenu(user);
 			}
-			
 		}
 		else
 		{
@@ -69,11 +74,13 @@ void MenuClothes:: startMenu()
 	}
 }
 
-
-void MenuClothes::printStartMenu()
+void MenuClothes::printAdminMenu()
 {
-	cout << "1: Login" << endl;
-	cout << "2: Create account" << endl;
+	cout << endl;
+	cout << "1: Add new item" << endl;
+	cout << "2: Print list of items" << endl;
+	cout << "3: Delete item" << endl;
+	cout << "4: Update item" << endl;
 	cout << "0: Exit" << endl;
 }
 
@@ -87,8 +94,8 @@ void MenuClothes::adminMenu()
 		switch (choose)
 		{
 		case 1: {
-			ProductClothes clothe = addClothe();
-			arrClothes.push_back(clothe);
+			Clothes* item = addClothes();
+			stock.push_back(item);
 			saveClothes();
 			break;
 		}
@@ -110,7 +117,7 @@ void MenuClothes::adminMenu()
 			break;
 		}
 		default:
-			cout << "Wrong choise!!! Try again" << endl;
+			cout << "Please, try again" << endl;
 			break;
 		}
 		printAdminMenu();
@@ -118,140 +125,141 @@ void MenuClothes::adminMenu()
 	}
 }
 
-ProductClothes MenuClothes::addClothe()
+Clothes* MenuClothes::addClothes()
 {
 	int type;
 
-	cout << "1: dress type" << endl;
-	cout << "2: bag type" << endl;
-	cout << "3: shirt type" << endl;
-	cout << "4: sweater type" << endl;
-
-	cin >> type;
+	cout << "1: Dress" << endl;
+	cout << "2: Bag" << endl;
+	cout << "3: Shirt" << endl;
+	cout << "4: Sweater" << endl;
+	cout << "5: Jacket" << endl;
+	POINT:cin >> type;
 	switch (type)
 	{
 	case 1: 
 	{
 		Dress dress;
-		cin >> dress;
-		return dress;
-		break;
+		return dress.input();
 	}
 	case 2:
 	{
 		Bag bag;
-		cin >> bag;
-		return bag;
-		break;
+		return bag.input();
 	}
 	case 3:
 	{
 		Shirt shirt;
-		cin >> shirt;
-		return shirt;
-		break;
+		return shirt.input();
 	}
 	case 4:
 	{
 		Sweater sweater;
-		cin >> sweater;
-		return sweater;
-		break;
+		return sweater.input();
 	}
-
+	case 5:
+	{
+		Jacket jacket;
+		return jacket.input();
+	}
 	default:
 	{
-		ProductClothes clothe;
-		cin >> clothe;
-		return clothe;
+		cout << "Please, try again" << endl;
+		goto POINT;
 		break;
 	}
-
 	}
-}
-void MenuClothes::printAdminMenu()
-{
-	cout << endl;
-	cout << "1: input clothe" << endl;
-	cout << "2: list clothes" << endl;
-	cout << "3: delete clothe" << endl;
-	cout << "4: update" << endl;
-	cout << "0: exit" << endl;
 }
 
 void MenuClothes::printUserMenu()
 {
 	cout << endl;
 	cout << "1: View list of clothes" << endl;
-	cout << "2:Add clothes to cart" << endl;
-	cout << "3:View my info" << endl;
-	cout << "0:exit" << endl;
+	cout << "2: Add clothes to cart" << endl;
+	cout << "3: View my info" << endl;
+	cout << "0: Exit" << endl;
 }
 
 void MenuClothes::deleteClothe()
 {
-	string typeOfClothe;
-	cout << "input type of clothe" << endl;
-	cin >> typeOfClothe;
-	for (int i = 0; i < arrClothes.size(); i++)
+	string id;
+	cout << "Eneter id of item to delete" << endl;
+	cin >> id;
+	for (int i = 0; i < stock.size(); i++)
 	{
-		if (typeOfClothe == arrClothes[i].getType())
+		if (stock[i]->getId()==id)
 		{
-			arrClothes.erase(arrClothes.begin() + i);
+			stock.erase(stock.begin() + i);
+			saveClothes();
+			cout << "Operation is completed" << endl;
 			return;
 		}
 	}
-	cout << "Not found this clothe" << endl;
-
+	cout << "No items with such id exist" << endl;
 }
 
 void MenuClothes::update()
 {
-	string typeOfClothe;
-	cout << "input type of clothe, which you want to update" << endl;
-	cin >> typeOfClothe;
-	for (int i = 0; i < arrClothes.size(); i++)
+	string id;
+	cout << "Enter id of item to update" << endl;
+	cin >> id;
+	for (int i = 0; i < stock.size(); i++)
 	{
-		if (typeOfClothe == arrClothes[i].getType())
+		if (stock[i]->getId()==id)
 		{
-			cout << "Please, input new values for " << arrClothes[i].getType() << endl;
-			cin >> arrClothes[i];
+			cout << "Please, enter new values for item"<< endl;
+			stock[i] = stock[i]->input();
+			saveClothes();
+			cout << endl << "Operation is completed" << endl;
 			return;
 		}
 	}
-	cout << "Not found this clothe" << endl;
-}
-
-bool MenuClothes::isClothesAvailable(ProductClothes clothes)
-{
-	string typeOfClothe;
-	for (int i = 0; i < arrClothes.size(); i++)
-	{
-		if (typeOfClothe == arrClothes[i].getType())
-		{
-			if (clothes == arrClothes[i])
-			{
-				return true;
-			}
-		}
-	}
-	return false;
-}
-
-void MenuClothes::addToCart(ProductClothes product,  User& user)
-{
-	saveProductToFile(product, user.getLogin());
+	cout << "No item with such id exist" << endl;
 }
 
 void MenuClothes::printClothes()
 {
-	if (this->arrClothes.size() == 0)
+	if (this->stock.size() == 0)
 	{
 		cout << "List is empty" << endl;;
 	}
-	for (int i = 0; i < this->arrClothes.size(); i++)
+	for (int i = 0; i < this->stock.size(); i++)
 	{
-		cout << this->arrClothes[i];
+		if (dynamic_cast<Sweater*>(stock[i]))
+		{
+			Sweater* sweater = dynamic_cast<Sweater*>(stock[i]);
+			sweater->print();
+			cout << endl;
+			cout<< "------------" << endl;
+		}
+		if (dynamic_cast<Shirt*>(stock[i]))
+		{
+			Shirt* shirt = dynamic_cast<Shirt*>(stock[i]);
+			shirt->print();
+			cout << endl;
+			cout << "------------" << endl;
+		}
+		if (dynamic_cast<Dress*>(stock[i]))
+		{
+			Dress* dress = dynamic_cast<Dress*>(stock[i]);
+			dress->print();
+			cout << endl;
+			cout << "------------" << endl;
+		}
+		if (dynamic_cast<Bag*>(stock[i]))
+		{
+			Bag* bag = dynamic_cast<Bag*>(stock[i]);
+			bag->print();
+			cout << endl;
+			cout << "------------" << endl;
+		}
+		if (dynamic_cast<Jacket*>(stock[i]))
+		{
+			Jacket* jacket = dynamic_cast<Jacket*>(stock[i]);
+			jacket->print();
+			cout << endl;
+			cout << "------------" << endl;
+		}
 	}
 }
 
@@ -271,14 +279,25 @@ void MenuClothes::userMenu( User& user)
 		}
 		case 2: 
 		{
-			ProductClothes clothes = addClothe();
-			if (isClothesAvailable(clothes))
+			cout << "Enter id of item to buy" << endl;
+			string id;
+			cin >> id;
+			bool isCompleted = false;
+			for (int i = 0; i < stock.size(); ++i)
 			{
-				addToCart(clothes, user);
+				if (stock[i]->getId() == id)
+				{
+					SaveClothesToUser(stock[i], user.getLogin());
+					stock.erase(stock.begin() + i);
+					saveClothes();
+					cout << "Operation is completed" << endl;
+					isCompleted = true;
+					break;
+				}
 			}
-			else
+			if (!isCompleted)
 			{
-				cout << "Sorry, we don't have this item." << endl;
+				cout << "Sorry, there is no item with such id" << endl;
 			}
 			break;
 		}

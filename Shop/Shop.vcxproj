@@ -150,8 +150,9 @@
     <ClCompile Include="DTO\ShopProductData.cpp" />
     <ClCompile Include="DTO\User_DTO.cpp" />
     <ClCompile Include="Entity\Bag.cpp" />
+    <ClCompile Include="Entity\Clothes.cpp" />
     <ClCompile Include="Entity\Dress.cpp" />
-    <ClCompile Include="Entity\ProductClothes.cpp" />
+    <ClCompile Include="Entity\Jacket.cpp" />
     <ClCompile Include="Entity\Shirt.cpp" />
     <ClCompile Include="Entity\Sweater.cpp" />
     <ClCompile Include="Entity\User.cpp" />
@@ -163,8 +164,9 @@
     <ClInclude Include="DTO\ShopProductData.h" />
     <ClInclude Include="DTO\User_DTO.h" />
     <ClInclude Include="Entity\Bag.h" />
+    <ClInclude Include="Entity\Clothes.h" />
     <ClInclude Include="Entity\Dress.h" />
-    <ClInclude Include="Entity\ProductClothes.h" />
+    <ClInclude Include="Entity\Jacket.h" />
     <ClInclude Include="Entity\Shirt.h" />
     <ClInclude Include="Entity\Sweater.h" />
     <ClInclude Include="Entity\User.h" />

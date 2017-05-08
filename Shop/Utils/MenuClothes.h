@@ -2,7 +2,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
-#include"../Entity/ProductClothes.h"
+#include"../Entity/Clothes.h"
 #include"../DTO/ShopProductData.h"
 #include"../DTO/User_DTO.h"
 #include"../Entity/User.h"
@@ -13,7 +13,7 @@ using namespace std;
 class MenuClothes
 {
 protected:
-	vector<ProductClothes> arrClothes;
+	vector<Clothes*> stock;
 public:
 	MenuClothes();
 	MenuClothes(const MenuClothes &menu);
@@ -26,16 +26,14 @@ public:
 	void adminMenu();
 	void printAdminMenu();
 	void printUserMenu();
-	ProductClothes addClothe();
+	Clothes* addClothes();
 
 	void loadClothes(string filename);
 	void saveClothes();
 	void update();
-	bool isClothesAvailable(ProductClothes cl);
 	void deleteClothe();
 	void printClothes();
 
 	//users menu
 	void userMenu(User& user);
-	void addToCart(ProductClothes product, User& user);
 };

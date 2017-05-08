@@ -1,4 +1,0 @@
-dress female l 130 4
-bag famale small 147 1
-jumper male xl 200 3
-shirt male l 180 2

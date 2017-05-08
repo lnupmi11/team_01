@@ -5,6 +5,5 @@ int main()
 {
 	MenuClothes menuClothes;
 	menuClothes.startMenu();
-	system("pause");
 	return 0;
 }

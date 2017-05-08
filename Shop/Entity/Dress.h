@@ -1,25 +1,19 @@
 #pragma once
-#include<iostream>
-#include<string>
-
-#include"ProductClothes.h"
-
-
-using namespace std;
-
-class Dress : public ProductClothes
+#include"Clothes.h"
+class Dress : public Clothes
 {
 private:
-	string color;
-	string materail;
+	string style;
 public:
 	Dress();
-	Dress(const ProductClothes& clothes, string color);
-	Dress(const Dress &dress);
+	Dress(string aSex, string aSize, string aColor, double aPrice, string aId, string aStyle, string aMaterial);
 
-	string getFieldsName();
-	void input(istream& is);
-	void print(ostream& os) const;
+	string getStyle();
 
-	bool operator==(const Dress& dress);
+	friend istream& operator>>(istream& is, Dress* &obj);
+	friend istream& operator>>(istream& is, Dress &obj);
+	friend ostream& operator<<(ostream& os, Dress* &obj);
+	friend ostream& operator<<(ostream& os, Dress &obj);
+	Clothes* input();
+	void print();
 };

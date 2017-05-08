@@ -1,26 +1,21 @@
 #pragma once
-#include"ProductClothes.h"
-
+#include"Clothes.h"
 using namespace std;
 
-class Shirt : public ProductClothes
+class Shirt : public Clothes
 {
 protected:
-	string color;
 	string style;
 public:
 	Shirt();
-	Shirt(ProductClothes&  one, string c, string s);
+	Shirt(string aSex, string aSize, string aColor, double aPrice, string aMaterial, string aId, string aStyle);
 
-	void setColor(string aColor);
-	void setStyle(string aStyle);
-
-	string getColor();
 	string getStyle();
 
-	string getFieldsName();
-	void input(istream& is);
-	void print(ostream& os) const;
-
-	bool operator==(const Shirt& shirt);
+	friend istream& operator>>(istream& is, Shirt* &obj);
+	friend istream& operator>>(istream& is, Shirt &obj);
+	friend ostream& operator<<(ostream& os, Shirt* &obj);
+	friend ostream& operator<<(ostream& os, Shirt &obj);
+	Clothes* input();
+	void print();
 };

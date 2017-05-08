@@ -1,9 +1,9 @@
 #pragma once
 #include<fstream>
-#include"../Entity/ProductClothes.h"
+#include"../Entity/Clothes.h"
 
-vector<ProductClothes> LoadProductClothes(string fileName);
+vector<Clothes*> LoadClothesFromFile(string fileName);
 
-void SaveProductsToFile(vector<ProductClothes> clothes, string fileName);
+void SaveProductsToFile(vector<Clothes*> &clothes, string fileName);
 
-void saveProductToFile(ProductClothes clothtes, string filename);
+void SaveClothesToUser(Clothes* &clothes, string fileName);

@@ -53,12 +53,21 @@ bool checkLogin(string log, string password)
 void printInfo(User& user)
 {
 	ifstream is;
-	is.open("User\\" + user.getLogin() + ".txt");
+	is.open("User\\" + user.getLogin() + ".txt", ios::in );
+	string firstName;
+	string lastName;
+	string isAdmin;
+	is >> firstName;
+	is >> lastName;
+	is >> isAdmin;
+	cout << "Name: " + firstName + " " + lastName << endl;
+	cout << "Cart:" << endl;
 	string line;
 	while (!is.eof())
 	{
 		getline(is, line);
-		cout << line << endl;
+		cout << line<<endl;
 	}
+	is.close();
 }
 

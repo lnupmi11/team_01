@@ -1,19 +1,19 @@
 #pragma once
-#include "ProductClothes.h"
-class Sweater: public ProductClothes
+#include "Clothes.h"
+class Sweater: public Clothes
 {
 protected:
-	string color;
+	string type;
 public:
 	Sweater();
-	Sweater(ProductClothes &p, string aColor);
+	Sweater(string aSex, string aSize, string aColor, double aPrice, string aId, string aType, string aMaterial);
 
-	void setColor(string aColor);
-	string getColor();
+	string getType();
 
-	string getFieldsName();
-	void input(istream& is);
-	void print(ostream& os) const;
-
-	bool operator==(const Sweater& sweater);
+	friend istream& operator>>(istream& is, Sweater* &obj);
+	friend istream& operator>>(istream& is, Sweater &obj);
+	friend ostream& operator<<(ostream& os, Sweater* &obj);
+	friend ostream& operator<<(ostream& os, Sweater &obj);
+	Clothes* input();
+	void print();
 };

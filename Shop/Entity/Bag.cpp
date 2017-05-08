@@ -1,42 +1,112 @@
 #pragma once
 #include"Bag.h"
-
-Bag::Bag() :ProductClothes()
+#include<iostream>
+Bag::Bag()
 {
-	this->type = "bag";
-	this->brand = "gucci";
-}
-Bag::Bag(const ProductClothes& clothes, string brand) : ProductClothes(clothes)
-{
-	this->brand = brand;
+	brand = "";
 }
 
-Bag::Bag(const Bag &bag) : ProductClothes(bag), brand(bag.brand)
+Bag::Bag(string aSex, string aSize, string aColor, double aPrice, string aId, string aBrand, string aMaterial)
 {
-	//this->color = dress.color;
+	sex = aSex;
+	size = aSize;
+	color = aColor;
+	price = aPrice;
+	id = aId;
+	brand = aBrand;
+	material = aMaterial;
 }
 
-string Bag::getFieldsName()
+string Bag::getBrand()
 {
-	string str = ProductClothes::getFieldsName();
-	str += ", brand";
-	return str;
+	return brand;
 }
 
-void Bag::input(istream& is)
+istream& operator>>(istream& is, Bag* &obj)
 {
-	ProductClothes::input(is);
-	is >> brand;
+	is >> obj->sex;
+	is >> obj->size;
+	is >> obj->color;
+	is >> obj->price;
+	is >> obj->id;
+	is >> obj->brand;
+	is >> obj->material;
+	return is;
 }
 
-void Bag::print(ostream& os) const
+istream& operator>>(istream& is, Bag &obj)
 {
-	ProductClothes::print(os);
-	os << brand;
+	is >> obj.sex;
+	is >> obj.size;
+	is >> obj.color;
+	is >> obj.price;
+	is >> obj.id;
+	is >> obj.brand;
+	is >> obj.material;
+	return is;
 }
 
-bool Bag:: operator==(const Bag& bag)
+void Bag::print()
 {
-	return this->sex == bag.sex && this->size == bag.size
-		&&this->brand == bag.brand;
+	cout << "Bag " + this->id << endl;
+	cout << "Info:" << endl;
+	cout << "sex: " << this->sex << endl;
+	cout << "size: " << this->size << endl;
+	cout << "color: " << this->color << endl;
+	cout << "price: " << this->price << endl;
+	cout << "brand: " << this->brand << endl;
+	cout << "material: " << this->material << endl;
+}
+
+ostream& operator<<(ostream& os, Bag* &obj)
+{
+	os << "Bag" << endl;
+	os << obj->sex << endl;
+	os << obj->size << endl;
+	os << obj->color << endl;
+	os << obj->price << endl;
+	os << obj->id << endl;
+	os << obj->brand << endl;
+	os << obj->material << endl;
+	return os;
+}
+
+ostream& operator<<(ostream& os, Bag &obj)
+{
+	os << "Bag" << endl;
+	os << obj.sex << endl;
+	os << obj.size << endl;
+	os << obj.color << endl;
+	os << obj.price << endl;
+	os << obj.id << endl;
+	os << obj.brand << endl;
+	os << obj.material << endl;
+	return os;
+}
+
+Clothes* Bag::input()
+{
+	cout << "Enter sex" << endl;
+	string sex;
+	cin >> sex;
+	cout << "Enter size" << endl;
+	string size;
+	cin >> size;
+	cout << "Enter color" << endl;
+	string color;
+	cin >> color;
+	cout << "Enter price" << endl;
+	double price;
+	cin >> price;
+	cout << "Enter id" << endl;
+	string id;
+	cin >> id;
+	cout << "Enter brand" << endl;
+	string brand;
+	cin >> brand;
+	cout << "Enter material" << endl;
+	string material;
+	cin >> material;
+	Bag* bag = new Bag(sex, size, color, price, id, brand, material);
+	return bag;
 }

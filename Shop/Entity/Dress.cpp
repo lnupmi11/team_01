@@ -1,48 +1,112 @@
 #pragma once
-#include<iostream>
-#include<string>
 #include"Dress.h"
-
-
-using namespace std;
-
-Dress::Dress() :ProductClothes()
+#include<iostream>
+Dress::Dress()
 {
-	type = "dress";
-	color = "red";
+	style = "";
 }
 
-Dress::Dress(const ProductClothes& clothes, string color) : ProductClothes(clothes)
+Dress::Dress(string aSex, string aSize, string aColor, double aPrice, string aId, string aStyle, string aMaterial)
 {
-	this->color = color;
+	sex = aSex;
+	size = aSize;
+	color = aColor;
+	price = aPrice;
+	id = aId;
+	style = aStyle;
+	material = aMaterial;
 }
 
-Dress::Dress(const Dress &dress) : ProductClothes(dress), color(dress.color)
+string Dress::getStyle()
 {
-	//this->color = dress.color;
+	return style;
 }
 
-string Dress::getFieldsName()
+istream& operator>>(istream& is, Dress* &obj)
 {
-	string str = ProductClothes::getFieldsName();
-	str += ", color, material";
-	return str;
+	is >> obj->sex;
+	is >> obj->size;
+	is >> obj->color;
+	is >> obj->price;
+	is >> obj->id;
+	is >> obj->style;
+	is >> obj->material;
+	return is;
 }
 
-void Dress::input(istream& is)
+istream& operator>>(istream& is, Dress &obj)
 {
-	ProductClothes::input(is);
-	is >> color >> materail;
+	is >> obj.sex;
+	is >> obj.size;
+	is >> obj.color;
+	is >> obj.price;
+	is >> obj.id;
+	is >> obj.style;
+	is >> obj.material;
+	return is;
 }
 
-void Dress::print(ostream& os) const
+void Dress::print()
 {
-	ProductClothes::print(os);
-	os << color << materail;
+	cout << "Dress " + this->id << endl;
+	cout << "Info:" << endl;
+	cout << "sex: " << this->sex << endl;
+	cout << "size: " << this->size << endl;
+	cout << "color: " << this->color << endl;
+	cout << "price: " << this->price << endl;
+	cout << "style: " << this->style << endl;
+	cout << "material: " << this->material << endl;
 }
 
-bool Dress::operator==(const Dress& dress)
+ostream& operator<<(ostream& os, Dress* &obj)
 {
-	return this->sex == dress.sex && this->size == dress.size
-		&&this->color == dress.color;
+	os << "Dress" << endl;
+	os << obj->sex << endl;
+	os << obj->size << endl;
+	os << obj->color << endl;
+	os << obj->price << endl;
+	os << obj->id << endl;
+	os << obj->style << endl;
+	os << obj->material << endl;
+	return os;
+}
+
+ostream& operator<<(ostream& os, Dress &obj)
+{
+	os << "Dress" << endl;
+	os << obj.sex << endl;
+	os << obj.size << endl;
+	os << obj.color << endl;
+	os << obj.price << endl;
+	os << obj.id << endl;
+	os << obj.style << endl;
+	os << obj.material << endl;
+	return os;
+}
+
+Clothes* Dress::input()
+{
+	cout << "Enter sex" << endl;
+	string sex;
+	cin >> sex;
+	cout << "Enter size" << endl;
+	string size;
+	cin >> size;
+	cout << "Enter color" << endl;
+	string color;
+	cin >> color;
+	cout << "Enter price" << endl;
+	double price;
+	cin >> price;
+	cout << "Enter id" << endl;
+	string id;
+	cin >> id;
+	cout << "Enter style" << endl;
+	string style;
+	cin >> style;
+	cout << "Enter material" << endl;
+	string material;
+	cin >> material;
+	Dress* dress = new Dress(sex, size, color, price, id, style, material);
+	return dress;
 }
