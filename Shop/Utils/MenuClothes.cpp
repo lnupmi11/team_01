@@ -164,12 +164,12 @@ void MenuClothes::printUserMenu()
 
 void MenuClothes::deleteClothe()
 {
-	string typeOfClothe;
-	cout << "input type of clothe" << endl;
-	cin >> typeOfClothe;
+	string id;
+	cout << "input id of clothe" << endl;
+	cin >> id;
 	for (int i = 0; i < arrClothes.size(); i++)
 	{
-		if (typeOfClothe == arrClothes[i]->getType())
+		if (id == arrClothes[i]->getId())
 		{
 			arrClothes.erase(arrClothes.begin() + i);
 			return;
@@ -181,14 +181,14 @@ void MenuClothes::deleteClothe()
 
 void MenuClothes::update()
 {
-	string typeOfClothe;
-	cout << "input type of clothe, which you want to update" << endl;
-	cin >> typeOfClothe;
+	string id;
+	cout << "input id of clothe, which you want to update" << endl;
+	cin >> id;
 	for (int i = 0; i < arrClothes.size(); i++)
 	{
-		if (typeOfClothe == arrClothes[i]->getType())
+		if (id == arrClothes[i]->getId())
 		{
-			cout << "Please, input new values for " << arrClothes[i]->getType() << endl;
+			cout << "Please, input new values for: " << endl << *arrClothes[i] << endl;
 			cin >> *arrClothes[i];
 			return;
 		}
