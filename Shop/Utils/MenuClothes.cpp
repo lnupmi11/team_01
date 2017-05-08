@@ -24,7 +24,7 @@ void MenuClothes::loadClothes(string filename)
 
 void MenuClothes::saveClothes()
 {
-	SaveProductsToFile(arrClothes, "DataShopOutPut.txt");
+	SaveProductsToFile(arrClothes, "DataShop.txt");
 }
 
 void MenuClothes:: startMenu()
@@ -76,7 +76,7 @@ void MenuClothes::adminMenu()
 		switch (choose)
 		{
 		case 1: {
-			ProductClothes clothe = addClothe();
+			ProductClothes* clothe = addClothe();
 			arrClothes.push_back(clothe);
 			saveClothes();
 			break;
@@ -84,6 +84,7 @@ void MenuClothes::adminMenu()
 
 		case 2: {
 			printClothes();
+			saveClothes();
 			break;
 		}
 		case 3:
@@ -107,7 +108,7 @@ void MenuClothes::adminMenu()
 	}
 }
 
-ProductClothes MenuClothes::addClothe()
+ProductClothes* MenuClothes::addClothe()
 {
 	int type;
 
@@ -117,47 +118,31 @@ ProductClothes MenuClothes::addClothe()
 	cout << "4: sweater type" << endl;
 
 	cin >> type;
-	switch (type)
+	ProductClothes *data;
+	if (type == 1)
 	{
-	case 1: 
+		data = new Dress();
+	}
+	else if (type == 2)
 	{
-		Dress dress;
-		cin >> dress;
-		return dress;
-		break;
+		data = new Bag();
 	}
-	case 2:
+	else if (type == 3)
 	{
-		Bag bag;
-		cin >> bag;
-		return bag;
-		break;
+		data = new Shirt();
 	}
-	case 3:
+	else if (type == 4)
 	{
-		Shirt shirt;
-		cin >> shirt;
-		return shirt;
-		break;
+		data = new Sweater();
 	}
-	case 4:
+	else
 	{
-		Sweater sweater;
-		cin >> sweater;
-		return sweater;
-		break;
+		data = new ProductClothes();
 	}
-
-	default:
-	{
-		ProductClothes clothe;
-		cin >> clothe;
-		return clothe;
-		break;
-	}
-
-	}
+	cin >> *data;
+	return data;
 }
+
 void MenuClothes::printAdminMenu()
 {
 	cout << endl;
@@ -172,9 +157,9 @@ void MenuClothes::printUserMenu()
 {
 	cout << endl;
 	cout << "1: View list of clothes" << endl;
-	cout << "2:Add clothes to cart" << endl;
-	cout << "3:View my info" << endl;
-	cout << "0:exit" << endl;
+	cout << "2: Add clothes to cart" << endl;
+	cout << "3: View my info" << endl;
+	cout << "0: Exit" << endl;
 }
 
 void MenuClothes::deleteClothe()
@@ -184,7 +169,7 @@ void MenuClothes::deleteClothe()
 	cin >> typeOfClothe;
 	for (int i = 0; i < arrClothes.size(); i++)
 	{
-		if (typeOfClothe == arrClothes[i].getType())
+		if (typeOfClothe == arrClothes[i]->getType())
 		{
 			arrClothes.erase(arrClothes.begin() + i);
 			return;
@@ -201,22 +186,22 @@ void MenuClothes::update()
 	cin >> typeOfClothe;
 	for (int i = 0; i < arrClothes.size(); i++)
 	{
-		if (typeOfClothe == arrClothes[i].getType())
+		if (typeOfClothe == arrClothes[i]->getType())
 		{
-			cout << "Please, input new values for " << arrClothes[i].getType() << endl;
-			cin >> arrClothes[i];
+			cout << "Please, input new values for " << arrClothes[i]->getType() << endl;
+			cin >> *arrClothes[i];
 			return;
 		}
 	}
 	cout << "Not found this clothe" << endl;
 }
 
-bool MenuClothes::isClothesAvailable(ProductClothes clothes)
+bool MenuClothes::isClothesAvailable(ProductClothes* clothes)
 {
 	string typeOfClothe;
 	for (int i = 0; i < arrClothes.size(); i++)
 	{
-		if (typeOfClothe == arrClothes[i].getType())
+		if (typeOfClothe == arrClothes[i]->getType())
 		{
 			if (clothes == arrClothes[i])
 			{
@@ -227,7 +212,7 @@ bool MenuClothes::isClothesAvailable(ProductClothes clothes)
 	return false;
 }
 
-void MenuClothes::addToCart(ProductClothes product,  User& user)
+void MenuClothes::addToCart(ProductClothes* product,  User& user)
 {
 	saveProductToFile(product, user.getLogin());
 }
@@ -240,7 +225,7 @@ void MenuClothes::printClothes()
 	}
 	for (int i = 0; i < this->arrClothes.size(); i++)
 	{
-		cout << this->arrClothes[i];
+		cout << *this->arrClothes[i];
 	}
 }
 
@@ -260,7 +245,7 @@ void MenuClothes::userMenu( User& user)
 		}
 		case 2: 
 		{
-			ProductClothes clothes = addClothe();
+			ProductClothes* clothes = addClothe();
 			if (isClothesAvailable(clothes))
 			{
 				addToCart(clothes, user);

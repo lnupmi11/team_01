@@ -32,7 +32,7 @@ void Bag::input(istream& is)
 void Bag::print(ostream& os) const
 {
 	ProductClothes::print(os);
-	os << brand;
+	os << " " << brand;
 }
 
 bool Bag:: operator==(const Bag& bag)

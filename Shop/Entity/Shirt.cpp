@@ -50,7 +50,7 @@ void Shirt::input(istream& is)
 void Shirt::print(ostream& os) const
 {
 	ProductClothes::print(os);
-	os << color << style;
+	os << " " << color << " " << style;
 }
 
 bool Shirt::operator==(const Shirt& shirt)

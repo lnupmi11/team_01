@@ -37,7 +37,7 @@ void Sweater::input(istream& is)
 void Sweater::print(ostream& os) const
 {
 	ProductClothes::print(os);
-	os << color ;
+	os << " " << color ;
 }
 
 bool Sweater::operator==(const Sweater& sweater)

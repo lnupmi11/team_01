@@ -13,7 +13,7 @@ using namespace std;
 class MenuClothes
 {
 protected:
-	vector<ProductClothes> arrClothes;
+	vector<ProductClothes*> arrClothes;
 public:
 	MenuClothes();
 	MenuClothes(const MenuClothes &menu);
@@ -26,16 +26,16 @@ public:
 	void adminMenu();
 	void printAdminMenu();
 	void printUserMenu();
-	ProductClothes addClothe();
+	ProductClothes* addClothe();
 
 	void loadClothes(string filename);
 	void saveClothes();
 	void update();
-	bool isClothesAvailable(ProductClothes cl);
+	bool isClothesAvailable(ProductClothes* cl);
 	void deleteClothe();
 	void printClothes();
 
 	//users menu
 	void userMenu(User& user);
-	void addToCart(ProductClothes product, User& user);
+	void addToCart(ProductClothes* product, User& user);
 };
