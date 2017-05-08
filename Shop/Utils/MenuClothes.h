@@ -6,6 +6,7 @@
 #include"../DTO/ShopProductData.h"
 #include"../DTO/User_DTO.h"
 #include"../Entity/User.h"
+#include"../Entity/Basket.h"
 #include"../BL/BL.h"
 
 using namespace std;
@@ -14,6 +15,7 @@ class MenuClothes
 {
 protected:
 	vector<ProductClothes*> arrClothes;
+	Basket* basket;
 public:
 	MenuClothes();
 	MenuClothes(const MenuClothes &menu);
@@ -31,11 +33,11 @@ public:
 	void loadClothes(string filename);
 	void saveClothes();
 	void update();
-	bool isClothesAvailable(ProductClothes* cl);
 	void deleteClothe();
 	void printClothes();
 
 	//users menu
 	void userMenu(User& user);
-	void addToCart(ProductClothes* product, User& user);
+	void addToBasket();
+	void saveBasket(string userLogin);
 };

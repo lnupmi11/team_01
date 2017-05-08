@@ -46,6 +46,9 @@
     <ClCompile Include="DTO\ShopProductData.cpp">
       <Filter>DTO</Filter>
     </ClCompile>
+    <ClCompile Include="Entity\Basket.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BL\BL.h">
@@ -78,5 +81,9 @@
     <ClInclude Include="DTO\ShopProductData.h">
       <Filter>DTO</Filter>
     </ClInclude>
+    <ClInclude Include="Entity\Basket.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\BasketItem.h" />
   </ItemGroup>
 </Project>

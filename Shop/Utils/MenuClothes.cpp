@@ -7,6 +7,7 @@
 
 MenuClothes::MenuClothes()
 {
+	basket = nullptr;
 	string filename = "DataShop.txt";
 	loadClothes(filename);
 }
@@ -43,6 +44,7 @@ void MenuClothes:: startMenu()
 		}
 		else
 		{
+			basket = new Basket(LoadUserBasket(user.getLogin()));
 			userMenu(user);
 		}
 		break;
@@ -157,8 +159,10 @@ void MenuClothes::printUserMenu()
 {
 	cout << endl;
 	cout << "1: View list of clothes" << endl;
-	cout << "2: Add clothes to cart" << endl;
-	cout << "3: View my info" << endl;
+	cout << "2: Add clothes to basket" << endl;
+	cout << "3: View my basket" << endl;
+	cout << "4: Delete item from basket" << endl;
+	cout << "5: View my info" << endl;
 	cout << "0: Exit" << endl;
 }
 
@@ -196,25 +200,30 @@ void MenuClothes::update()
 	cout << "Not found this clothe" << endl;
 }
 
-bool MenuClothes::isClothesAvailable(ProductClothes* clothes)
+void MenuClothes::addToBasket()
 {
-	string typeOfClothe;
+	string id;
+	cout << "Input id" << endl;
+	cin >> id;
+	ProductClothes* product = nullptr;
 	for (int i = 0; i < arrClothes.size(); i++)
 	{
-		if (typeOfClothe == arrClothes[i]->getType())
+		if (arrClothes[i]->getId() == id)
 		{
-			if (clothes == arrClothes[i])
-			{
-				return true;
-			}
+			product = arrClothes[i];
+			break;
 		}
 	}
-	return false;
-}
-
-void MenuClothes::addToCart(ProductClothes* product,  User& user)
-{
-	saveProductToFile(product, user.getLogin());
+	if (product != nullptr)
+	{
+		basket->addItem(product);
+		return;
+	}
+	else
+	{
+		cout << "Not find product for this id" << endl;
+	}
+	
 }
 
 void MenuClothes::printClothes()
@@ -229,7 +238,7 @@ void MenuClothes::printClothes()
 	}
 }
 
-void MenuClothes::userMenu( User& user)
+void MenuClothes::userMenu(User& user)
 {
 	int choose;
 	printUserMenu();
@@ -245,18 +254,25 @@ void MenuClothes::userMenu( User& user)
 		}
 		case 2: 
 		{
-			ProductClothes* clothes = addClothe();
-			if (isClothesAvailable(clothes))
-			{
-				addToCart(clothes, user);
-			}
-			else
-			{
-				cout << "Sorry, we don't have this item." << endl;
-			}
+			addToBasket();
+			saveBasket(user.getLogin());
 			break;
 		}
 		case 3:
+		{
+			basket->print();
+			break;
+		}
+		case 4:
+		{
+			string id;
+			cout << "Input id of clothe , which you want to delete" << endl;
+			cin >> id;
+			basket->deleteItem(id);
+			saveBasket(user.getLogin());
+			break;
+		}
+		case 5:
 		{
 			printInfo(user);
 			break;
@@ -268,4 +284,9 @@ void MenuClothes::userMenu( User& user)
 		printUserMenu();
 		cin >> choose;
 	}
+}
+
+void MenuClothes::saveBasket(string userLogin)
+{
+	SaveUserBasketToFile(basket->getItems(), userLogin);
 }
