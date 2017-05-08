@@ -10,6 +10,7 @@ protected:
 	string style;
 public:
 	Shirt();
+	Shirt(string id);
 	Shirt(ProductClothes&  one, string c, string s);
 
 	void setColor(string aColor);

@@ -14,6 +14,7 @@ private:
 	string materail;
 public:
 	Dress();
+	Dress(string id);
 	Dress(const ProductClothes& clothes, string color);
 	Dress(const Dress &dress);
 

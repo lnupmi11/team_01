@@ -6,6 +6,13 @@ Bag::Bag() :ProductClothes()
 	this->type = "bag";
 	this->brand = "gucci";
 }
+
+Bag::Bag(string id) : ProductClothes(id)
+{
+	this->type = "bag";
+	this->brand = "gucci";
+}
+
 Bag::Bag(const ProductClothes& clothes, string brand) : ProductClothes(clothes)
 {
 	this->brand = brand;

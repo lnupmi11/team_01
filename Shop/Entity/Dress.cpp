@@ -6,7 +6,13 @@
 
 using namespace std;
 
-Dress::Dress() :ProductClothes()
+Dress::Dress():ProductClothes()
+{
+	type = "dress";
+	color = "red";
+}
+
+Dress::Dress(string id):ProductClothes(id)
 {
 	type = "dress";
 	color = "red";

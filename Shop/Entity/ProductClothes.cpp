@@ -5,26 +5,37 @@
 
 ProductClothes::ProductClothes()
 {
-	 sex="male";
-	 size ="L";
-	 price=100.50;
-	 amount =0;
+	this->id = "000";
+	this->sex = "male";
+	this->size = "L";
+	this->price = 100.50;
+	this->amount = 0;
 };
 
-ProductClothes::ProductClothes(string aSex, string aSize, double aPrice, int aAmount)
+ProductClothes::ProductClothes(string id)
 {
-	sex = aSex;
-	size = aSize;
-	price = aPrice;
-	amount = aAmount;
+	this->id = id;
+	this->sex = "";
+	this->size = "";
+	this->price = 0;
+	this->amount = 0;
+}
+
+ProductClothes::ProductClothes(string id, string sex, string size, double price, int amount)
+{
+	this->id = id;
+	this->sex = sex;
+	this->size = size;
+	this->price = price;
+	this->amount = amount;
 };
 ProductClothes::ProductClothes(const ProductClothes & obj)
 {
-	type = obj.type;
-	sex = obj.sex;
-	size = obj.size;
-	price = obj.price;
-	amount = obj.amount;
+	this->type = obj.type;
+	this->sex = obj.sex;
+	this->size = obj.size;
+	this->price = obj.price;
+	this->amount = obj.amount;
 }
 
 void ProductClothes::setType(string newType)
@@ -52,6 +63,11 @@ void ProductClothes::setAmount(int aAmount)
 	amount = aAmount;
 }
 
+string ProductClothes::getId()
+{
+	return id;
+};
+
 string ProductClothes::getSex()
 {
 	return sex;
@@ -70,7 +86,7 @@ double ProductClothes::getPrice()
 string ProductClothes::getType()
 {
 	return type;
-}; 
+};
 
 int ProductClothes::getAmount()
 {
@@ -79,16 +95,20 @@ int ProductClothes::getAmount()
 
 string ProductClothes::getFieldsName()
 {
-	return "sex, size, price, amount";
+	return "id, sex, size, price, amount";
 };
 
 void ProductClothes::input(istream& is)
 {
-	is /*>> type*/ >> sex >> size >> price >> amount;
+	if (typeid(is) == typeid(istream))
+	{
+		is >> id;
+	}
+	is /*id >> type*/ >> sex >> size >> price >> amount;
 }
 void ProductClothes::print(ostream& os) const
 {
-	os << type << " " << sex << " " << size << " " << price << " " << amount;
+	os << id << " " << type << " " << sex << " " << size << " " << price << " " << amount;
 }
 
 istream& operator >> (istream&is, ProductClothes&x)
@@ -110,6 +130,6 @@ ostream& operator<<(ostream&os, const ProductClothes&x)
 
 bool ProductClothes::operator==(const ProductClothes& pr)
 {
-	return this->sex == pr.sex && this->size == pr.size
+	return this->id == pr.id && this->sex == pr.sex && this->size == pr.size
 		&& this->price == pr.price && this->type == pr.type;
 }

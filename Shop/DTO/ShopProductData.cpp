@@ -8,30 +8,29 @@
 
 ProductClothes* addClothe(ifstream& file)
 {
-	string type;
-
-	file >> type;
+	string id, type;
+	file >> id >> type;
 
 	ProductClothes *data;
 	if (type == "dress")
 	{
-		data = new Dress();
+		data = new Dress(id);
 	}
 	else if (type == "bag")
 	{
-		data = new Bag();
+		data = new Bag(id);
 	}
 	else if (type == "shirt")
 	{
-		data = new Shirt();
+		data = new Shirt(id);
 	}
 	else if (type == "sweater")
 	{
-		data = new Sweater();
+		data = new Sweater(id);
 	}
 	else
 	{
-		data = new ProductClothes();
+		data = new ProductClothes(id);
 	}
 
 	file >> *data;

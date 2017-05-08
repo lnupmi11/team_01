@@ -8,6 +8,13 @@ Shirt::Shirt()
 	style = "none";
 }
 
+Shirt::Shirt(string id) : ProductClothes(id)
+{
+	type = "shirt";
+	color = "white";
+	style = "none";
+}
+
 Shirt::Shirt(ProductClothes&  obj, string aColor, string aStyle):ProductClothes(obj)
 {
 	color = aColor;
