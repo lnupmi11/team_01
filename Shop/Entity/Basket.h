@@ -17,6 +17,4 @@ public:
 	void addItem(ProductClothes* clothe);
 	vector<BasketItem*> getItems();
 	void deleteItem(string id);
-	//double getTotalSuma();
-	void print();
 };

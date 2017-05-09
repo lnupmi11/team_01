@@ -51,23 +51,3 @@ void Basket::deleteItem(string id)
 	}
 }
 
-void Basket::print()
-{
-	if (items.size() != 0)
-	{
-		for (int i = 0; i < items.size(); i++)
-		{
-			cout << items[i]->id << " " << items[i]->count << endl;
-		}
-	}
-	else
-	{
-		cout << "Basket is empty" << endl;
-	}
-	
-}
-
-//double Basket::getTotalSuma()
-//{
-//	return 0;
-//}

@@ -4,6 +4,7 @@
 #include "../Entity/Dress.h"
 #include "../Entity/Shirt.h"
 #include "../Entity/Sweater.h"
+#include<iomanip>
 
 MenuClothes::MenuClothes()
 {
@@ -200,32 +201,6 @@ void MenuClothes::update()
 	cout << "Not found this clothe" << endl;
 }
 
-void MenuClothes::addToBasket()
-{
-	string id;
-	cout << "Input id" << endl;
-	cin >> id;
-	ProductClothes* product = nullptr;
-	for (int i = 0; i < arrClothes.size(); i++)
-	{
-		if (arrClothes[i]->getId() == id)
-		{
-			product = arrClothes[i];
-			break;
-		}
-	}
-	if (product != nullptr)
-	{
-		basket->addItem(product);
-		return;
-	}
-	else
-	{
-		cout << "Not find product for this id" << endl;
-	}
-	
-}
-
 void MenuClothes::printClothes()
 {
 	if (this->arrClothes.size() == 0)
@@ -247,12 +222,12 @@ void MenuClothes::userMenu(User& user)
 	{
 		switch (choose)
 		{
-		case 1: 
+		case 1:
 		{
 			printClothes();
 			break;
 		}
-		case 2: 
+		case 2:
 		{
 			addToBasket();
 			saveBasket(user.getLogin());
@@ -260,7 +235,7 @@ void MenuClothes::userMenu(User& user)
 		}
 		case 3:
 		{
-			basket->print();
+			printBasket();
 			break;
 		}
 		case 4:
@@ -285,6 +260,59 @@ void MenuClothes::userMenu(User& user)
 		cin >> choose;
 	}
 }
+
+void MenuClothes::addToBasket()
+{
+	string id;
+	cout << "Input id" << endl;
+	cin >> id;
+	ProductClothes* product = findClothe(id);
+	if (product != nullptr)
+	{
+		basket->addItem(product);
+		return;
+	}
+	else
+	{
+		cout << "Not find product for this id" << endl;
+	}
+}
+
+ProductClothes* MenuClothes::findClothe(string id)
+{
+	ProductClothes* product = nullptr;
+	for (int i = 0; i < arrClothes.size(); i++)
+	{
+		if (arrClothes[i]->getId() == id)
+		{
+			product = arrClothes[i];
+			break;
+		}
+	}
+	return product;
+}
+
+void MenuClothes::printBasket()
+{
+	vector<BasketItem*> items = basket->getItems();
+	if (items.size() != 0)
+	{
+		double totalPrice = 0;
+		cout << "id" << setw(7) << "type" << setw(25) << "price*count=total price" << endl;
+		for (int i = 0; i < items.size(); i++)
+		{
+			ProductClothes* product = findClothe(items[i]->id);
+			cout << product->getId() << setw(7) << product->getType() << setw(5) << product->getPrice() << "*" << items[i]->count << "=" << product->getPrice() *items[i]->count << endl;
+			totalPrice += product->getPrice() *items[i]->count;
+		}
+		cout << "total price:" << totalPrice << endl;
+	}
+	else
+	{
+		cout << "Basket is empty" << endl;
+	}
+}
+
 
 void MenuClothes::saveBasket(string userLogin)
 {

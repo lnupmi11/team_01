@@ -35,9 +35,11 @@ public:
 	void update();
 	void deleteClothe();
 	void printClothes();
+	ProductClothes* findClothe(string id);
 
 	//users menu
 	void userMenu(User& user);
 	void addToBasket();
 	void saveBasket(string userLogin);
+	void printBasket();
 };
