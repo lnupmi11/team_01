@@ -4,6 +4,7 @@
 #include"../Entity/Dress.h"
 #include"../Entity/Shirt.h"
 #include"../Entity/Sweater.h"
+#include"../Entity/Footwear.h"
 #include"ShopProductData.h"
 
 ProductClothes addClothe(ifstream& file)
@@ -37,6 +38,14 @@ ProductClothes addClothe(ifstream& file)
 		Sweater sweater;
 		file >> sweater;
 		return sweater;
+	}
+
+
+	if (type == "footwear")
+	{
+		Sweater footwear;
+		file >> footwear;
+		return footwear;
 	}
 }
 

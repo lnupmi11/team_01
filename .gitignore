@@ -1,2 +1,15 @@
 Shop/x64/Debug/Bag.obj
 Shop/x64/Debug/
+*.obj
+*.tlog
+*.lastbuildstate
+*.idb
+*.pdb
+*.suo
+*.db
+*.ipch
+*.json
+*.sqlite
+*.md
+*.exe
+*.ilk

@@ -151,6 +151,7 @@
     <ClCompile Include="DTO\User_DTO.cpp" />
     <ClCompile Include="Entity\Bag.cpp" />
     <ClCompile Include="Entity\Dress.cpp" />
+    <ClCompile Include="Entity\Footwear.cpp" />
     <ClCompile Include="Entity\ProductClothes.cpp" />
     <ClCompile Include="Entity\Shirt.cpp" />
     <ClCompile Include="Entity\Sweater.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="DTO\User_DTO.h" />
     <ClInclude Include="Entity\Bag.h" />
     <ClInclude Include="Entity\Dress.h" />
+    <ClInclude Include="Entity\Footwear.h" />
     <ClInclude Include="Entity\ProductClothes.h" />
     <ClInclude Include="Entity\Shirt.h" />
     <ClInclude Include="Entity\Sweater.h" />

@@ -4,6 +4,7 @@
 #include "../Entity/Dress.h"
 #include "../Entity/Shirt.h"
 #include "../Entity/Sweater.h"
+#include "../Entity/Footwear.h"
 
 MenuClothes::MenuClothes()
 {
@@ -126,6 +127,7 @@ ProductClothes MenuClothes::addClothe()
 	cout << "2: bag type" << endl;
 	cout << "3: shirt type" << endl;
 	cout << "4: sweater type" << endl;
+	cout << "5: footwear type" << endl;
 
 	cin >> type;
 	switch (type)
@@ -156,6 +158,14 @@ ProductClothes MenuClothes::addClothe()
 		Sweater sweater;
 		cin >> sweater;
 		return sweater;
+		break;
+	}
+
+	case 5:
+	{
+		Sweater footwear;
+		cin >> footwear;
+		return footwear;
 		break;
 	}
 
