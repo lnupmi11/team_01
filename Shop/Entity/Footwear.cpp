@@ -7,6 +7,12 @@ Footwear::Footwear()
 	brand = "Christian Louboutin";
 }
 
+Footwear::Footwear(string id) :ProductClothes(id)
+{
+	color = "white";
+	brand = "Christian Louboutin";
+}
+
 Footwear::Footwear(ProductClothes&  obj, string aColor, string aBrand) :ProductClothes(obj)
 {
 	color = aColor;
@@ -54,7 +60,7 @@ void Footwear::print(ostream& os) const
 	os << color << brand;
 }
 
-bool Footwear::operator==(const Footwear& shirt)
+bool Footwear::operator==(const Footwear& footwear)
 {
 	return this->sex == footwear.sex && this->size == footwear.size
 		&&this->color == footwear.color && this->brand == footwear.brand;

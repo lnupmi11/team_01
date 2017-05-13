@@ -8,6 +8,13 @@ Shirt::Shirt()
 	style = "none";
 }
 
+Shirt::Shirt(string id) : ProductClothes(id)
+{
+	type = "shirt";
+	color = "white";
+	style = "none";
+}
+
 Shirt::Shirt(ProductClothes&  obj, string aColor, string aStyle):ProductClothes(obj)
 {
 	color = aColor;
@@ -50,7 +57,7 @@ void Shirt::input(istream& is)
 void Shirt::print(ostream& os) const
 {
 	ProductClothes::print(os);
-	os << color << style;
+	os << " " << color << " " << style;
 }
 
 bool Shirt::operator==(const Shirt& shirt)

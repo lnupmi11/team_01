@@ -7,6 +7,7 @@ private:
 	string brand;
 public:
 	Bag();
+	Bag(string id);
 	Bag(const ProductClothes& clothes, string brand);
 	Bag(const Bag &dress);
 

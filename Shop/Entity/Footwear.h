@@ -12,6 +12,7 @@ protected:
 	string brand;
 public:
 	Footwear();
+	Footwear(string id);
 	Footwear(ProductClothes&  one, string col, string br);
 
 	void setColor(string aColor);

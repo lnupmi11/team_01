@@ -7,6 +7,13 @@ Sweater::Sweater()
 	type = "jumper";
 }
 
+Sweater::Sweater(string id) : ProductClothes(id)
+{
+	type = "sweater";
+	color = "blue";
+	type = "jumper";
+}
+
 Sweater::Sweater(ProductClothes &p, string aColor):ProductClothes(p)
 {
 	color = aColor;
@@ -37,7 +44,7 @@ void Sweater::input(istream& is)
 void Sweater::print(ostream& os) const
 {
 	ProductClothes::print(os);
-	os << color ;
+	os << " " << color ;
 }
 
 bool Sweater::operator==(const Sweater& sweater)

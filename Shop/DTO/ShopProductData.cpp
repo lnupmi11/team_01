@@ -7,77 +7,100 @@
 #include"../Entity/Footwear.h"
 #include"ShopProductData.h"
 
-ProductClothes addClothe(ifstream& file)
+ProductClothes* addClothe(ifstream& file)
 {
-	string type;
+	string id, type;
+	file >> id >> type;
 
-	file >> type;
-
+	ProductClothes *data;
 	if (type == "dress")
 	{
-		Dress dress;
-		file >> dress;
-		return dress;
+		data = new Dress(id);
 	}
-	if (type == "bag")
+	else if (type == "bag")
 	{
-		Bag bag;
-		file >> bag;
-		return bag;
+		data = new Bag(id);
+	}
+	else if (type == "shirt")
+	{
+		data = new Shirt(id);
+	}
+	else if (type == "sweater")
+	{
+		data = new Sweater(id);
+	}
+	else if (type == "footwear")
+	{
+		data = new Footwear(id);
+	}
+	else
+	{
+		data = new ProductClothes(id);
 	}
 
-	if (type == "shirt")
-	{
-		Shirt shirt;
-		file >> shirt;
-		return shirt;
-	}
-
-	if (type == "sweater")
-	{
-		Sweater sweater;
-		file >> sweater;
-		return sweater;
-	}
-
-
-	if (type == "footwear")
-	{
-		Sweater footwear;
-		file >> footwear;
-		return footwear;
-	}
+	file >> *data;
+	return data;
 }
 
-vector<ProductClothes> LoadProductClothes(string fileName)
+vector<ProductClothes*> LoadProductClothes(string fileName)
 {
-	ifstream file(fileName);
+	ifstream file("Data\\" + fileName);
 	int n;
 	file >> n;
-	vector<ProductClothes> clothes;
+	vector<ProductClothes*> clothes;
 	for (int i = 0; i < n; i++)
 	{
-		ProductClothes clothe = addClothe(file);
+		ProductClothes* clothe = addClothe(file);
 		clothes.push_back(clothe);
 	}
 	return clothes;
 }
 
 
-void SaveProductsToFile(vector<ProductClothes> clothes, string fileName)
+void SaveProductsToFile(vector<ProductClothes*> clothes, string fileName)
 {
-	ofstream fileOut(fileName);
+	ofstream fileOut("Data\\" + fileName);
+	fileOut << clothes.size() << endl;
 	for (int i = 0; i < clothes.size(); i++)
 	{
-		fileOut << clothes[i];
+		fileOut << *clothes[i];
 	}
 	fileOut.close();
 }
 
-void saveProductToFile(ProductClothes clothes, string filename)
+vector<BasketItem*> LoadUserBasket(string userLogin)
+{
+	vector<BasketItem*> basketItems;
+	ifstream file("Data\\Baskets\\" + userLogin + ".txt");
+	if (file.good())
+	{
+		int n;
+		file >> n;
+		for (int i = 0; i < n; i++)
+		{
+			BasketItem* basketItem = new BasketItem();
+			file >> *basketItem;
+			basketItems.push_back(basketItem);
+		}
+	}
+	return basketItems;
+}
+
+void SaveUserBasketToFile(vector<BasketItem*> basketItems, string userLogin)
+{
+	ofstream fileOut("Data\\Baskets\\" + userLogin + ".txt");
+	fileOut << basketItems.size() << endl;
+	for (int i = 0; i < basketItems.size(); i++)
+	{
+		fileOut << *basketItems[i];
+	}
+	fileOut.close();
+}
+
+void saveProductToFile(ProductClothes* clothes, string filename)
 {
 	ofstream output;
 	output.open("User\\" + filename + ".txt", ios_base::app);
-	output << clothes;
+	output << *clothes;
 	output.close();
 }

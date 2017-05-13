@@ -1,9 +1,13 @@
 #pragma once
 #include<fstream>
+#include"../Entity/Basket.h"
 #include"../Entity/ProductClothes.h"
 
-vector<ProductClothes> LoadProductClothes(string fileName);
+vector<ProductClothes*> LoadProductClothes(string fileName);
+void SaveProductsToFile(vector<ProductClothes*> clothes, string fileName);
+void saveProductToFile(ProductClothes* clothes, string filename);
 
-void SaveProductsToFile(vector<ProductClothes> clothes, string fileName);
+vector<BasketItem*> LoadUserBasket(string userLogin);
+void SaveUserBasketToFile(vector<BasketItem*> basketItems, string userLogin);
 
-void saveProductToFile(ProductClothes clothtes, string filename);
+

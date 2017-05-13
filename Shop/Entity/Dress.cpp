@@ -6,7 +6,13 @@
 
 using namespace std;
 
-Dress::Dress() :ProductClothes()
+Dress::Dress():ProductClothes()
+{
+	type = "dress";
+	color = "red";
+}
+
+Dress::Dress(string id):ProductClothes(id)
 {
 	type = "dress";
 	color = "red";
@@ -38,7 +44,7 @@ void Dress::input(istream& is)
 void Dress::print(ostream& os) const
 {
 	ProductClothes::print(os);
-	os << color << materail;
+	os << " " << color << " " << materail;
 }
 
 bool Dress::operator==(const Dress& dress)

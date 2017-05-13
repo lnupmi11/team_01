@@ -1,11 +1,15 @@
 #pragma once
 #include "ProductClothes.h"
+
+using namespace std;
+
 class Sweater: public ProductClothes
 {
 protected:
 	string color;
 public:
 	Sweater();
+	Sweater(string id);
 	Sweater(ProductClothes &p, string aColor);
 
 	void setColor(string aColor);

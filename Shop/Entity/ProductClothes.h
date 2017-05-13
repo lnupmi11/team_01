@@ -5,6 +5,7 @@ using namespace std;
 class ProductClothes
 {
 protected:
+	string id;
 	string type;
 	string sex;
 	string size;
@@ -12,7 +13,8 @@ protected:
 	int amount;
 public:
 	ProductClothes();
-	ProductClothes(string aSex, string aSize, double aPrice, int aAmount);
+	ProductClothes(string id);
+	ProductClothes(string id, string sex, string size, double price, int amount);
 	ProductClothes(const ProductClothes &obj);
 
 	void setType(string newType);
@@ -21,7 +23,7 @@ public:
 	void setSex(string aSex);
 	void setAmount(int aAmount);
 	
-
+	string getId();
 	string getType();
 	string getSex();
 	string getSize();
