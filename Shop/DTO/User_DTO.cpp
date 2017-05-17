@@ -55,10 +55,20 @@ void printInfo(User& user)
 	ifstream is;
 	is.open("User\\" + user.getLogin() + ".txt");
 	string line;
-	while (!is.eof())
+	getline(is, line);
+	cout << "First name:" << setw(10)<< line << endl;
+	getline(is, line);
+	cout << "Last name:" << setw(11)<< line << endl;
+	getline(is, line);
+	if (line == "0")
 	{
-		getline(is, line);
-		cout << line << endl;
+		line = "user";
 	}
+	else
+	{
+		line = "admin";
+	}
+	cout << "Status:" << setw(14) << line << endl;
+	is.close();
 }
 

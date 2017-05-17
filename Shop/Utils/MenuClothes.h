@@ -25,7 +25,7 @@ public:
 	void printStartMenu();
 
 	/* clothes menu*/
-	void adminMenu();
+	void adminMenu(User& user);
 	void printAdminMenu();
 	void printUserMenu();
 	ProductClothes* addClothe();

@@ -10,4 +10,5 @@ void saveProductToFile(ProductClothes* clothes, string filename);
 vector<BasketItem*> LoadUserBasket(string userLogin);
 void SaveUserBasketToFile(vector<BasketItem*> basketItems, string userLogin);
 
+bool checkId(string filename, string id);
 

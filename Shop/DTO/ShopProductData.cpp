@@ -42,6 +42,24 @@ ProductClothes* addClothe(ifstream& file)
 	return data;
 }
 
+bool checkId(string filename, string id)
+{
+	ifstream file("Data\\" + filename);
+	int n;
+	file >> n;
+	for (int i = 0; i < n; i++)
+	{
+		string tmpId;
+		file>>tmpId;
+		if (tmpId == id)
+		{
+			return true;
+		}
+		getline(file, tmpId);
+	}
+	file.close();
+	return false;
+}
 vector<ProductClothes*> LoadProductClothes(string fileName)
 {
 	ifstream file("Data\\" + fileName);

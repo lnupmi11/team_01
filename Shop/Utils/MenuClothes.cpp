@@ -72,7 +72,7 @@ void MenuClothes::startMenu()
 				cout << "Your login is successful !\n";
 				if (user.getAdmin())
 				{
-					adminMenu();
+					adminMenu(user);
 				}
 				else
 				{
@@ -121,7 +121,7 @@ void MenuClothes::printStartMenu()
 	cout << "0: Exit" << endl;
 }
 
-void MenuClothes::adminMenu()
+void MenuClothes::adminMenu(User& user)
 {
 	bool checkInput = false;
 	string input;
@@ -142,12 +142,21 @@ void MenuClothes::adminMenu()
 		{
 		case 1: {
 			ProductClothes* clothe = addClothe();
-			arrClothes.push_back(clothe);
-			saveClothes();
+			if (checkId("DataShop.txt", clothe->getId()))
+			{
+				system("cls");
+				cout << "Item with that id already exist!" << endl;
+			}
+			else
+			{
+				arrClothes.push_back(clothe);
+				saveClothes();
+			}
 			break;
 		}
 
 		case 2: {
+			system("cls");
 			printClothes();
 			saveClothes();
 			break;
@@ -163,6 +172,17 @@ void MenuClothes::adminMenu()
 			update();
 			saveClothes();
 			break;
+		}
+		case 5:
+		{
+			system("cls");
+			printInfo(user);
+			break;
+		}
+		case 0:
+		{
+			system("cls");
+			return;
 		}
 		default:
 			system("cls");
@@ -219,6 +239,7 @@ void MenuClothes::printAdminMenu()
 	cout << "2: list clothes" << endl;
 	cout << "3: delete clothe" << endl;
 	cout << "4: update" << endl;
+	cout << "5: view info" << endl;
 	cout << "0: exit" << endl;
 }
 
@@ -311,6 +332,7 @@ void MenuClothes::userMenu(User& user)
 			}
 			case 3:
 			{
+				system("cls");
 				printBasket();
 				break;
 			}
@@ -325,6 +347,7 @@ void MenuClothes::userMenu(User& user)
 			}
 			case 5:
 			{
+				system("cls");
 				printInfo(user);
 				break;
 			}
@@ -334,7 +357,6 @@ void MenuClothes::userMenu(User& user)
 				return;
 			}
 			default:
-				system("cls");
 				cout << "Wrong choise!!! Try again" << endl;
 				break;
 			}
