@@ -5,7 +5,19 @@
 #include "../Entity/Shirt.h"
 #include "../Entity/Sweater.h"
 #include<iomanip>
+#include <cctype>
 #include "../Entity/Footwear.h"
+
+bool checkInputF(string s)
+{
+	for (int i = 0; i < s.length(); i++)
+	{
+		if (!isdigit(s[i]))
+		{
+			return false;
+		}
+	}
+}
 
 MenuClothes::MenuClothes()
 {
@@ -30,46 +42,76 @@ void MenuClothes::saveClothes()
 	SaveProductsToFile(arrClothes, "DataShop.txt");
 }
 
-void MenuClothes:: startMenu()
+void MenuClothes::startMenu()
 {
+	bool checkInput = false;
+	string input;
 	int choose;
-	printStartMenu();
-	cin >> choose;
-	switch (choose)
+	while (!checkInput)
 	{
-	case 1:
-	{
-		User user = login();
-		if (user.getFirstName() != "")
+		printStartMenu();
+		cin >> input;
+		if (checkInputF(input))
 		{
-			cout << "Your login is successful !\n";
-			if (user.getAdmin())
-			{
-				adminMenu();
-			}
-			else
-			{
-				basket = new Basket(LoadUserBasket(user.getLogin()));
-				userMenu(user);
-			}
-			
+			choose = stoi(input);
 		}
 		else
 		{
-			cout << "You entered invalid data! \n";
+			choose = 100;
 		}
-		break;
-	}
-	case 2:
-	{
-		User user = createNewUser();
-		userMenu(user);
-	}
-	default:
-		return;
-		break;
+		
+		switch (choose)
+		{
+		case 1:
+		{
+			system("cls");
+			User user = login();
+			system("cls");
+			if (user.getFirstName() != "")
+			{
+				cout << "Your login is successful !\n";
+				if (user.getAdmin())
+				{
+					adminMenu();
+				}
+				else
+				{
+					basket = new Basket(LoadUserBasket(user.getLogin()));
+					userMenu(user);
+				}
+
+			}
+			else
+			{
+				cout << "You entered invalid data! \n";
+			}
+			break;
+		}
+		
+		case 0:
+		{
+			checkInput = true;
+			return;
+			break;
+		}
+		case 2:
+		{
+			system("cls");
+			User user;
+			
+			user = createNewUser();
+			if (user.getFirstName() != "")
+			{
+				userMenu(user);
+			}
+			break;
+		}
+		default:
+			system("cls");
+		}
 	}
 }
+
 
 
 void MenuClothes::printStartMenu()
@@ -81,11 +123,21 @@ void MenuClothes::printStartMenu()
 
 void MenuClothes::adminMenu()
 {
+	bool checkInput = false;
+	string input;
 	int choose;
-	printAdminMenu();
-	cin >> choose;
-	while (choose != 0)
+	while (!checkInput)
 	{
+		printAdminMenu();
+		cin >> input;
+		if (checkInputF(input))
+		{
+			choose = stoi(input);
+		}
+		else
+		{
+			choose = 100;
+		}
 		switch (choose)
 		{
 		case 1: {
@@ -113,11 +165,10 @@ void MenuClothes::adminMenu()
 			break;
 		}
 		default:
+			system("cls");
 			cout << "Wrong choise!!! Try again" << endl;
 			break;
 		}
-		printAdminMenu();
-		cin >> choose;
 	}
 }
 
@@ -230,49 +281,64 @@ void MenuClothes::printClothes()
 
 void MenuClothes::userMenu(User& user)
 {
+	bool inputCheck = false;
+	string input;
 	int choose;
-	printUserMenu();
-	cin >> choose;
-	while (choose != 0)
+	while (!inputCheck)
 	{
-		switch (choose)
-		{
-		case 1:
-		{
-			printClothes();
-			break;
-		}
-		case 2:
-		{
-			addToBasket();
-			saveBasket(user.getLogin());
-			break;
-		}
-		case 3:
-		{
-			printBasket();
-			break;
-		}
-		case 4:
-		{
-			string id;
-			cout << "Input id of clothe , which you want to delete" << endl;
-			cin >> id;
-			basket->deleteItem(id);
-			saveBasket(user.getLogin());
-			break;
-		}
-		case 5:
-		{
-			printInfo(user);
-			break;
-		}
-		default:
-			cout << "Wrong choise!!! Try again" << endl;
-			break;
-		}
 		printUserMenu();
-		cin >> choose;
+		cin >> input;
+		if (checkInputF(input))
+		{
+			choose = stoi(input);
+		}
+		else
+		{
+			choose = 100;
+		}
+			switch (choose)
+			{
+			case 1:
+			{
+				printClothes();
+				break;
+			}
+			case 2:
+			{
+				addToBasket();
+				saveBasket(user.getLogin());
+				break;
+			}
+			case 3:
+			{
+				printBasket();
+				break;
+			}
+			case 4:
+			{
+				string id;
+				cout << "Input id of clothe , which you want to delete" << endl;
+				cin >> id;
+				basket->deleteItem(id);
+				saveBasket(user.getLogin());
+				break;
+			}
+			case 5:
+			{
+				printInfo(user);
+				break;
+			}
+			case 0:
+			{
+				system("cls");
+				return;
+			}
+			default:
+				system("cls");
+				cout << "Wrong choise!!! Try again" << endl;
+				break;
+			}
+		
 	}
 }
 
@@ -333,3 +399,4 @@ void MenuClothes::saveBasket(string userLogin)
 {
 	SaveUserBasketToFile(basket->getItems(), userLogin);
 }
+

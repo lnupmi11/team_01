@@ -23,7 +23,9 @@ User createNewUser()
 	}
 	else
 	{
-		cout << "Error! This login already exist\n";
+		system("cls");
+		cout<< "Error! This login already exist\n";
+		return User();
 	}
 }
 
