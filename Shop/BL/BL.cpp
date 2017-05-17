@@ -16,14 +16,16 @@ User createNewUser()
 	cout << "Enter password\n";
 	cin >> password;
 	User user(firstName, lastName, login, password, 0);
+	system("cls");
 	if (existenceLogin(login))
 	{
+		cout << "Registration is Successful!\n";
 		saveNewUser(user);
 		return user;
 	}
 	else
 	{
-		system("cls");
+		
 		cout<< "Error! This login already exist\n";
 		return User();
 	}

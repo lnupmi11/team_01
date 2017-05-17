@@ -2,6 +2,4 @@ Y Y
 U U
 N N
 I I
-5 5
- 
-2 2
+P P
