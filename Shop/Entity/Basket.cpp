@@ -32,22 +32,28 @@ vector<BasketItem*> Basket::getItems()
 
 void Basket::deleteItem(string id)
 {
+	system("cls");
 	for (int i = 0; i < items.size(); i++)
 	{
 		if (items[i]->id == id)
 		{
+			
 			if (items[i]->count > 1)
 			{
+				cout << "You have deleted successfully\n";
 				items[i]->count--;
 				return;
 			}
 			else
 			{
+				cout << "There is not product in your basket with this ID\n";
 				items.erase(items.begin() + i);
 				return;
 			}
 			
 		}
 	}
+	cout << "You have entered incorrect ID\n";
+
 }
 

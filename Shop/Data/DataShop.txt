@@ -1,5 +1,4 @@
-4
-002 bag famale small 147 1 black
-001 dress female l 6875 1 red silk
-003 sweater male xl 695 1 black
-004 shirt male l 854 1 white casual
+3
+001 dress male L 89 7 red cotton
+002 bag male M 45 6 ZARA
+003 shirt male M 45 2 green casual
