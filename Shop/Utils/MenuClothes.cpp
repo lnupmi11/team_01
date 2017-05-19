@@ -294,6 +294,7 @@ void MenuClothes::update()
 		{
 			cout << "Please, input new values for: " << endl << *arrClothes[i] << endl;
 			cin >> *arrClothes[i];
+			system("cls");
 			cout << "You have updated clothes successfully";
 			return;
 		}

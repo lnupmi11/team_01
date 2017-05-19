@@ -3,6 +3,7 @@
 
 Footwear::Footwear()
 {
+	type = "footwear";
 	color = "white";
 	brand = "Christian Louboutin";
 }
@@ -15,6 +16,7 @@ Footwear::Footwear(string id) :ProductClothes(id)
 
 Footwear::Footwear(ProductClothes&  obj, string aColor, string aBrand) :ProductClothes(obj)
 {
+	type = "footwear";
 	color = aColor;
 	brand = aBrand;
 }
@@ -57,7 +59,7 @@ void Footwear::input(istream& is)
 void Footwear::print(ostream& os) const
 {
 	ProductClothes::print(os);
-	os << color << brand;
+	os <<" "<< color<<" " << brand;
 }
 
 bool Footwear::operator==(const Footwear& footwear)

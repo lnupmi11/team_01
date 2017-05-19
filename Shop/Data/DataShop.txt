@@ -1,4 +1,5 @@
-3
+4
 001 dress male L 89 7 red cotton
-002 bag male M 45 6 ZARA
+003 bag bag male 45 6 ZARA
 003 shirt male M 45 2 green casual
+006  male s 678 1 white Nike
