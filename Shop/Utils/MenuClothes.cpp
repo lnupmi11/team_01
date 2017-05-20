@@ -423,11 +423,11 @@ void MenuClothes::printBasket()
 	if (items.size() != 0)
 	{
 		double totalPrice = 0;
-		cout << "id" << setw(7) << "type" << setw(25) << "price*count=total price" << endl;
+		cout << "id" << setw(11) << "type" << setw(25) << "price*count=total price" << endl;
 		for (int i = 0; i < items.size(); i++)
 		{
 			ProductClothes* product = findClothe(items[i]->id);
-			cout << product->getId() << setw(7) << product->getType() << setw(5) << product->getPrice() << "*" << items[i]->count << "=" << product->getPrice() *items[i]->count << endl;
+			cout << product->getId() << setw(10) << product->getType() << setw(10) << product->getPrice() << "*" << items[i]->count << "=" << product->getPrice() *items[i]->count << endl;
 			totalPrice += product->getPrice() *items[i]->count;
 		}
 		cout << "total price:" << totalPrice << endl;

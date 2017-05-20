@@ -37,16 +37,25 @@ void Basket::deleteItem(string id)
 	{
 		if (items[i]->id == id)
 		{
-			
-			if (items[i]->count > 1)
+			if (items[i]->count >= 1)
 			{
 				cout << "You have deleted successfully\n";
+			}
+
+			if (items[i]->count < 1)
+			{
+				cout << "There is not product in your basket with this ID\n";
+			}
+
+			if (items[i]->count > 1)
+			{
+				
 				items[i]->count--;
 				return;
 			}
 			else
 			{
-				cout << "There is not product in your basket with this ID\n";
+				
 				items.erase(items.begin() + i);
 				return;
 			}

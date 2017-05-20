@@ -10,6 +10,7 @@ Footwear::Footwear()
 
 Footwear::Footwear(string id) :ProductClothes(id)
 {
+	type = "footwear";
 	color = "white";
 	brand = "Christian Louboutin";
 }
