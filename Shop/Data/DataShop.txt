@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 5
+=======
+4
+>>>>>>> 7bc18beed82607a3fb28615979e76034a1455350
 002 dress male s 56 6 green cotton
 003 shirt male M 78 9 black casual
 005 sweater male xl 560 1 black
 004 dress female s 670 1 red 
+<<<<<<< HEAD
 009 dress male s 45 6 white 
+=======
+>>>>>>> 7bc18beed82607a3fb28615979e76034a1455350
