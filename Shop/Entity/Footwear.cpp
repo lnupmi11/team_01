@@ -51,6 +51,15 @@ string Footwear::getFieldsName()
 	return str;
 }
 
+void Footwear::addItem()
+{
+	ProductClothes::addItem();
+	cout << "Enter color:" << endl;
+	cin >> color;
+	cout << "Enter brand:" << endl;
+	cin >> brand;
+}
+
 void Footwear::input(istream& is)
 {
 	ProductClothes::input(is);

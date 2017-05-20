@@ -235,7 +235,7 @@ ProductClothes* MenuClothes::addClothe()
 	{
 		data = new ProductClothes();
 	}
-	cin >> *data;
+	data->addItem();
 	return data;
 }
 
@@ -286,7 +286,7 @@ void MenuClothes::update()
 {
 	string id;
 	printClothes();
-	cout << "input id of clothe, which you want to update" << endl;
+	cout << "Enter id of clothe, which you want to update" << endl;
 	cin >> id;
 	system("cls");
 	for (int i = 0; i < arrClothes.size(); i++)
@@ -294,7 +294,7 @@ void MenuClothes::update()
 		if (id == arrClothes[i]->getId())
 		{
 			cout << "Please, input new values for: " << endl << *arrClothes[i] << endl;
-			cin >> *arrClothes[i];
+			arrClothes[i]->addItem();
 			system("cls");
 			cout << "You have updated clothes successfully";
 			return;

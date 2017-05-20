@@ -1,5 +1,6 @@
 #pragma once
 #include"ProductClothes.h"
+#include<iostream>
 
 class Bag : public ProductClothes
 {
@@ -14,6 +15,7 @@ public:
 	string getFieldsName();
 	void input(istream& is);
 	void print(ostream& os) const;
+	void addItem();
 
 	bool operator==(const Bag& bag);
 };

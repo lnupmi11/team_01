@@ -1,7 +1,6 @@
 #pragma once
 #include<iostream>
 #include<string>
-
 #include"ProductClothes.h"
 
 
@@ -20,7 +19,8 @@ public:
 
 	string getFieldsName();
 	void input(istream& is);
-	 void print(ostream& os) const;
+	void print(ostream& os) const;
+	void addItem();
 
 	bool operator==(const Dress& dress);
 };
