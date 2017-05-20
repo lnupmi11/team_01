@@ -249,12 +249,8 @@ ProductClothes* MenuClothes::addClothe()
 		cout << "You choose incorrect action\n";
 		return NULL;
 	}
-<<<<<<< HEAD
 	system("cls");
 	data -> addItem();
-=======
-	data->addItem();
->>>>>>> 7bc18beed82607a3fb28615979e76034a1455350
 	return data;
 }
 
