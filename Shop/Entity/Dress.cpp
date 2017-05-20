@@ -40,7 +40,7 @@ void Dress::addItem()
 	cout << "Enter color:" << endl;
 	cin >> color;
 	cout << "Enter material:" << endl;
-	cin >> material;
+	cin >> materail;
 }
 void Dress::input(istream& is)
 {
