@@ -1,4 +1,3 @@
-3
-001 dress female S 56 6 green cotton
-004 footwear male S 56 7 red Pull
+2
+002 dress male s 56 6 green cotton
 003 shirt male M 78 9 black casual

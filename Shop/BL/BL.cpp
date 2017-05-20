@@ -20,6 +20,8 @@ User createNewUser()
 	if (existenceLogin(login))
 	{
 		cout << "Registration is Successful!\n";
+		ofstream fileOut("Data\\Baskets\\" + login + ".txt");
+		fileOut.close();
 		saveNewUser(user);
 		return user;
 	}

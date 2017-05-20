@@ -102,6 +102,7 @@ void MenuClothes::startMenu()
 			user = createNewUser();
 			if (user.getFirstName() != "")
 			{
+				basket = new Basket(LoadUserBasket(user.getLogin()));
 				userMenu(user);
 			}
 			break;
