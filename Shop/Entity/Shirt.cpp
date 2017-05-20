@@ -53,7 +53,14 @@ void Shirt::input(istream& is)
 	ProductClothes::input(is);
 	is >> color >> style;
 }
-
+void Shirt::addItem()
+{
+	ProductClothes::addItem();
+	cout << "Enter color:" << endl;
+	cin >> color;
+	cout << "Enter style:" << endl;
+	cin >> style;
+}
 void Shirt::print(ostream& os) const
 {
 	ProductClothes::print(os);

@@ -111,6 +111,20 @@ void ProductClothes::print(ostream& os) const
 	os << id << " " << type << " " << sex << " " << size << " " << price << " " << amount;
 }
 
+void ProductClothes::addItem()
+{
+	cout << "Enter id:" << endl;
+	cin >> id;
+	cout << "Enter sex:" << endl;
+	cin >> sex;
+	cout << "Enter size:" << endl;
+	cin >> size;
+	cout << "Enter price:" << endl;
+	cin >> price;
+	cout << "Enter amount:" << endl;
+	cin >> amount;
+}
+
 istream& operator >> (istream&is, ProductClothes&x)
 {
 	if (typeid(is) == typeid(istream))

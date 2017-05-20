@@ -33,6 +33,7 @@ public:
 	virtual string getFieldsName();
 	virtual void input(istream& is);
 	virtual void print(ostream& os) const;
+	virtual void addItem();
 
 	friend istream& operator >> (istream&is, ProductClothes&x);
 	friend ostream& operator<<(ostream&os, const ProductClothes&x);

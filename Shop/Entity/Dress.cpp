@@ -34,7 +34,12 @@ string Dress::getFieldsName()
 	str += ", color, material";
 	return str;
 }
-
+void Dress::addItem()
+{
+	ProductClothes::addItem();
+	cout << "Enter color:" << endl;
+	cin >> color;
+}
 void Dress::input(istream& is)
 {
 	ProductClothes::input(is);

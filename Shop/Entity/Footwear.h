@@ -24,6 +24,7 @@ public:
 	string getFieldsName();
 	void input(istream& is);
 	void print(ostream& os) const;
+	void addItem();
 
 	bool operator==(const Footwear& footwear);
 };

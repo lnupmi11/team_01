@@ -129,7 +129,7 @@ void MenuClothes::adminMenu(User& user)
 	int choose;
 	while (!checkInput)
 	{
-		
+
 		printAdminMenu();
 		cin >> input;
 		if (checkInputF(input))
@@ -144,32 +144,35 @@ void MenuClothes::adminMenu(User& user)
 		switch (choose)
 		{
 		case 1: {
-			
+
 			ProductClothes* clothe = addClothe();
-			system("cls");
-			if (checkId("DataShop.txt", clothe->getId()))
+			if (clothe != NULL)
 			{
-				
-				cout << "Item with that id already exist!" << endl;
-			}
-			else
-			{
-				cout << "You have added product successfully!" << endl;
-				arrClothes.push_back(clothe);
-				saveClothes();
+				system("cls");
+				if (checkId("DataShop.txt", clothe->getId()))
+				{
+
+					cout << "Item with that id already exist!" << endl;
+				}
+				else
+				{
+					cout << "You have added product successfully!" << endl;
+					arrClothes.push_back(clothe);
+					saveClothes();
+				}
 			}
 			break;
 		}
 
 		case 2: {
-			
+
 			printClothes();
 			saveClothes();
 			break;
 		}
 		case 3:
 		{
-			
+
 			deleteClothe();
 			saveClothes();
 			break;
@@ -182,13 +185,13 @@ void MenuClothes::adminMenu(User& user)
 		}
 		case 5:
 		{
-		
+
 			printInfo(user);
 			break;
 		}
 		case 0:
 		{
-			
+
 			return;
 		}
 		default:
@@ -208,8 +211,17 @@ ProductClothes* MenuClothes::addClothe()
 	cout << "3: shirt type" << endl;
 	cout << "4: sweater type" << endl;
 	cout << "5: footwear type" << endl;
+	string stringType;
+	cin >> stringType;
 
-	cin >> type;
+	if (checkInputF(stringType))
+	{
+		type = stoi(stringType);
+	}
+	else
+	{
+		type = 100;
+	}
 	ProductClothes *data;
 	if (type == 1)
 	{
@@ -233,9 +245,12 @@ ProductClothes* MenuClothes::addClothe()
 	}
 	else
 	{
-		data = new ProductClothes();
+		system("cls");
+		cout << "You choose incorrect action\n";
+		return NULL;
 	}
-	cin >> *data;
+	system("cls");
+	data -> addItem();
 	return data;
 }
 
@@ -286,7 +301,7 @@ void MenuClothes::update()
 {
 	string id;
 	printClothes();
-	cout << "input id of clothe, which you want to update" << endl;
+	cout << "Enter id of clothe, which you want to update" << endl;
 	cin >> id;
 	system("cls");
 	for (int i = 0; i < arrClothes.size(); i++)
@@ -294,7 +309,7 @@ void MenuClothes::update()
 		if (id == arrClothes[i]->getId())
 		{
 			cout << "Please, input new values for: " << endl << *arrClothes[i] << endl;
-			cin >> *arrClothes[i];
+			arrClothes[i]->addItem();
 			system("cls");
 			cout << "You have updated clothes successfully";
 			return;

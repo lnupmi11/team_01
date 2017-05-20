@@ -1,5 +1,6 @@
 #pragma once
 #include"ProductClothes.h"
+#include<iostream>
 
 using namespace std;
 
@@ -22,6 +23,7 @@ public:
 	string getFieldsName();
 	void input(istream& is);
 	void print(ostream& os) const;
+	void addItem();
 
 	bool operator==(const Shirt& shirt);
 };

@@ -30,6 +30,12 @@ string Bag::getFieldsName()
 	return str;
 }
 
+void Bag::addItem()
+{
+	ProductClothes::addItem();
+	cout << "Enter brand:" << endl;
+	cin >> brand;
+}
 void Bag::input(istream& is)
 {
 	ProductClothes::input(is);

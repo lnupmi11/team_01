@@ -4,14 +4,12 @@ Sweater::Sweater()
 {
 	type = "sweater";
 	color = "blue";
-	type = "jumper";
 }
 
 Sweater::Sweater(string id) : ProductClothes(id)
 {
 	type = "sweater";
 	color = "blue";
-	type = "jumper";
 }
 
 Sweater::Sweater(ProductClothes &p, string aColor):ProductClothes(p)
@@ -39,6 +37,13 @@ void Sweater::input(istream& is)
 {
 	ProductClothes::input(is);
 	is >> color;
+}
+
+void Sweater::addItem()
+{
+	ProductClothes::addItem();
+	cout << "Enter color:" << endl;
+	cin >> color;
 }
 
 void Sweater::print(ostream& os) const
