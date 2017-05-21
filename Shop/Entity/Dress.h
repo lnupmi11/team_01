@@ -10,7 +10,7 @@ class Dress : public ProductClothes
 {
 private:
 	string color;
-	string materail;
+	string material;
 public:
 	Dress();
 	Dress(string id);

@@ -373,12 +373,19 @@ void MenuClothes::userMenu(User& user)
 			}
 			case 4:
 			{
-				printBasket();
-				string id;
-				cout << "Input id of clothe , which you want to delete" << endl;
-				cin >> id;
-				basket->deleteItem(id);
-				saveBasket(user.getLogin());
+				if (basket->size() > 0)
+				{
+					printBasket();
+					string id;
+					cout << "Input id of clothe , which you want to delete" << endl;
+					cin >> id;
+					basket->deleteItem(id);
+					saveBasket(user.getLogin());
+				}
+				else
+				{
+					cout << "Basket is empty." << endl;
+				}
 				break;
 			}
 			case 5:

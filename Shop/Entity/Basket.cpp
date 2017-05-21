@@ -11,6 +11,11 @@ Basket::Basket(vector<BasketItem*> items)
 	this->items = items;
 }
 
+int Basket::size()
+{
+	return items.size();
+}
+
 void Basket::addItem(ProductClothes* clothe)
 {
 	for (int i = 0; i<items.size(); i++)

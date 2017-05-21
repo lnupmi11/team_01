@@ -10,12 +10,14 @@ Dress::Dress():ProductClothes()
 {
 	type = "dress";
 	color = "red";
+	material = "cotton";
 }
 
 Dress::Dress(string id):ProductClothes(id)
 {
 	type = "dress";
 	color = "red";
+	material = "cotton";
 }
 
 Dress::Dress(const ProductClothes& clothes, string color) : ProductClothes(clothes)
@@ -43,13 +45,13 @@ void Dress::addItem()
 void Dress::input(istream& is)
 {
 	ProductClothes::input(is);
-	is >> color >> materail;
+	is >> color >> material;
 }
 
 void Dress::print(ostream& os) const
 {
 	ProductClothes::print(os);
-	os << " " << color << " " << materail;
+	os << " " << color << " " << material;
 }
 
 bool Dress::operator==(const Dress& dress)

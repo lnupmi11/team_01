@@ -87,8 +87,10 @@
     <ClInclude Include="Entity\Basket.h">
       <Filter>Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Entity\BasketItem.h" />
     <ClInclude Include="Entity\Footwear.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\BasketItem.h">
       <Filter>Entity</Filter>
     </ClInclude>
   </ItemGroup>

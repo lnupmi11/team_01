@@ -14,6 +14,7 @@ protected:
 public:
 	Basket(vector<BasketItem*> items);
 
+	int size();
 	void addItem(ProductClothes* clothe);
 	vector<BasketItem*> getItems();
 	void deleteItem(string id);
