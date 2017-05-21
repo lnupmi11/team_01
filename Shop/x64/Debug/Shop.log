@@ -1,0 +1,17 @@
+﻿  MenuClothes.cpp
+  main.cpp
+  User.cpp
+  Sweater.cpp
+  Shirt.cpp
+  ProductClothes.cpp
+  Footwear.cpp
+  Dress.cpp
+  Bag.cpp
+  User_DTO.cpp
+  ShopProductData.cpp
+  BL.cpp
+  Basket.cpp
+  Generating Code...
+c:\users\avask\desktop\team_01\shop\utils\menuclothes.cpp(20): warning C4715: 'checkInputF': not all control paths return a value
+  Shop.vcxproj -> C:\Users\avask\Desktop\team_01\x64\Debug\Shop.exe
+  Shop.vcxproj -> C:\Users\avask\Desktop\team_01\x64\Debug\Shop.pdb (Full PDB)

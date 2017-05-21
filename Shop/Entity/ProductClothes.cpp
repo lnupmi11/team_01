@@ -104,7 +104,7 @@ void ProductClothes::input(istream& is)
 	{
 		is >> id;
 	}
-	is /*id >> type*/ >> sex >> size >> price >> amount;
+	is >> sex >> size >> price >> amount;
 }
 void ProductClothes::print(ostream& os) const
 {
