@@ -41,6 +41,8 @@ void Dress::addItem()
 	ProductClothes::addItem();
 	cout << "Enter color:" << endl;
 	cin >> color;
+	cout << "Enter material:" << endl;
+	cin >> materail;
 }
 void Dress::input(istream& is)
 {
