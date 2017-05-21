@@ -6,4 +6,5 @@ Shop.VC.db
 x64/Debug/
 Shop/Shop.vcxproj.user
 .vs/Shop/v15/.suo
-.vs/Shop/v15/Browse.VC.db 
+.vs/Shop/v15/Browse.VC.db
+/vs
