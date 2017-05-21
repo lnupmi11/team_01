@@ -22,7 +22,8 @@ public:
 	void setPrice(double aPrice);
 	void setSex(string aSex);
 	void setAmount(int aAmount);
-	
+	void setId(string newId);
+
 	string getId();
 	string getType();
 	string getSex();
@@ -37,7 +38,7 @@ public:
 
 	friend istream& operator >> (istream&is, ProductClothes&x);
 	friend ostream& operator<<(ostream&os, const ProductClothes&x);
-	
+
 	bool operator==(const ProductClothes& pr);
 };
 

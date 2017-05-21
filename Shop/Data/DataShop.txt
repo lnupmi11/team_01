@@ -1,7 +1,7 @@
-5
-002 dress male s 56 6 green cotton
+6
+002 dress female l 500 1 red silk
 003 shirt male M 78 9 black casual
 005 sweater male xl 560 1 black
 004 dress female s 670 1 red cotton
 009 dress male s 45 6 white cotton
-
+010 bag male l 120 1 Nike

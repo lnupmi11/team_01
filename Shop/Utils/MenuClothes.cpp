@@ -59,7 +59,7 @@ void MenuClothes::startMenu()
 		{
 			choose = 100;
 		}
-		
+
 		switch (choose)
 		{
 		case 1:
@@ -87,7 +87,7 @@ void MenuClothes::startMenu()
 			}
 			break;
 		}
-		
+
 		case 0:
 		{
 			checkInput = true;
@@ -98,7 +98,7 @@ void MenuClothes::startMenu()
 		{
 			system("cls");
 			User user;
-			
+
 			user = createNewUser();
 			if (user.getFirstName() != "")
 			{
@@ -119,6 +119,28 @@ void MenuClothes::printStartMenu()
 {
 	cout << "1: Login" << endl;
 	cout << "2: Create account" << endl;
+	cout << "0: Exit" << endl;
+}
+
+void MenuClothes::printAdminMenu()
+{
+	cout << endl;
+	cout << "1: input clothe" << endl;
+	cout << "2: list clothes" << endl;
+	cout << "3: delete clothe" << endl;
+	cout << "4: update" << endl;
+	cout << "5: view info" << endl;
+	cout << "0: exit" << endl;
+}
+
+void MenuClothes::printUserMenu()
+{
+	cout << endl;
+	cout << "1: View list of clothes" << endl;
+	cout << "2: Add clothes to basket" << endl;
+	cout << "3: View my basket" << endl;
+	cout << "4: Delete item from basket" << endl;
+	cout << "5: View my info" << endl;
 	cout << "0: Exit" << endl;
 }
 
@@ -250,36 +272,44 @@ ProductClothes* MenuClothes::addClothe()
 		return NULL;
 	}
 	system("cls");
-	data -> addItem();
+	data->addItem();
 	return data;
 }
 
-void MenuClothes::printAdminMenu()
+void MenuClothes::update()
 {
-	cout << endl;
-	cout << "1: input clothe" << endl;
-	cout << "2: list clothes" << endl;
-	cout << "3: delete clothe" << endl;
-	cout << "4: update" << endl;
-	cout << "5: view info" << endl;
-	cout << "0: exit" << endl;
-}
-
-void MenuClothes::printUserMenu()
-{
-	cout << endl;
-	cout << "1: View list of clothes" << endl;
-	cout << "2: Add clothes to basket" << endl;
-	cout << "3: View my basket" << endl;
-	cout << "4: Delete item from basket" << endl;
-	cout << "5: View my info" << endl;
-	cout << "0: Exit" << endl;
+	string id;
+	printClothes();
+	cout << "Enter id of clothe, which you want to update" << endl;
+	cin >> id;
+	system("cls");
+	for (int i = 0; i < arrClothes.size(); i++)
+	{
+		if (id == arrClothes[i]->getId())
+		{
+			cout << "Please, input new values for: " << endl << *arrClothes[i] << endl;
+			string prevId = arrClothes[i]->getId();
+			arrClothes[i]->addItem();
+			system("cls");
+			if (arrClothes[i]->getId() == prevId || !checkId("DataShop.txt", arrClothes[i]->getId()))
+			{
+				cout << "Update copmpleted successfully" << endl;
+			}
+			else
+			{
+				cout << "You entered id of another item id wasnt updated " << endl;
+				arrClothes[i]->setId(prevId);
+			}
+			return;
+		}
+	}
+	cout << "Not found this clothe" << endl;
 }
 
 void MenuClothes::deleteClothe()
 {
 	string id;
-	
+
 	printClothes();
 	cout << "input id of clothe" << endl;
 	cin >> id;
@@ -295,27 +325,6 @@ void MenuClothes::deleteClothe()
 	}
 	cout << "Not found this clothe" << endl;
 
-}
-
-void MenuClothes::update()
-{
-	string id;
-	printClothes();
-	cout << "Enter id of clothe, which you want to update" << endl;
-	cin >> id;
-	system("cls");
-	for (int i = 0; i < arrClothes.size(); i++)
-	{
-		if (id == arrClothes[i]->getId())
-		{
-			cout << "Please, input new values for: " << endl << *arrClothes[i] << endl;
-			arrClothes[i]->addItem();
-			system("cls");
-			cout << "You have updated clothes successfully";
-			return;
-		}
-	}
-	cout << "Not found this clothe" << endl;
 }
 
 void MenuClothes::printClothes()
@@ -350,60 +359,53 @@ void MenuClothes::userMenu(User& user)
 			choose = 100;
 		}
 		system("cls");
-			switch (choose)
-			{
-			case 1:
-			{
-				
-				printClothes();
-				break;
-			}
-			case 2:
-			{
-				printClothes();
-				addToBasket();
-				saveBasket(user.getLogin());
-				break;
-			}
-			case 3:
-			{
-				
-				printBasket();
-				break;
-			}
-			case 4:
-			{
-				if (basket->size() > 0)
-				{
-					printBasket();
-					string id;
-					cout << "Input id of clothe , which you want to delete" << endl;
-					cin >> id;
-					basket->deleteItem(id);
-					saveBasket(user.getLogin());
-				}
-				else
-				{
-					cout << "Basket is empty." << endl;
-				}
-				break;
-			}
-			case 5:
-			{
-				
-				printInfo(user);
-				break;
-			}
-			case 0:
-			{
-				
-				return;
-			}
-			default:
-				cout << "Wrong choise!!! Try again" << endl;
-				break;
-			}
-		
+		switch (choose)
+		{
+		case 1:
+		{
+
+			printClothes();
+			break;
+		}
+		case 2:
+		{
+			printClothes();
+			addToBasket();
+			saveBasket(user.getLogin());
+			break;
+		}
+		case 3:
+		{
+
+			printBasket();
+			break;
+		}
+		case 4:
+		{
+			printBasket();
+			string id;
+			cout << "Input id of clothe , which you want to delete" << endl;
+			cin >> id;
+			basket->deleteItem(id);
+			saveBasket(user.getLogin());
+			break;
+		}
+		case 5:
+		{
+
+			printInfo(user);
+			break;
+		}
+		case 0:
+		{
+
+			return;
+		}
+		default:
+			cout << "Wrong choise!!! Try again" << endl;
+			break;
+		}
+
 	}
 }
 

@@ -63,6 +63,11 @@ void ProductClothes::setAmount(int aAmount)
 	amount = aAmount;
 }
 
+void ProductClothes::setId(string newId)
+{
+	id = newId;
+}
+
 string ProductClothes::getId()
 {
 	return id;
@@ -121,8 +126,24 @@ void ProductClothes::addItem()
 	cin >> size;
 	cout << "Enter price:" << endl;
 	cin >> price;
+	while (!cin)
+	{
+		cout << "You have entered invalid data. Try again" << endl;
+		cout << "Enter price:" << endl;
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cin >> price;
+	}
 	cout << "Enter amount:" << endl;
 	cin >> amount;
+	while (!cin)
+	{
+		cout << "You have entered invalid data. Try again" << endl;
+		cout << "Enter amount:" << endl;
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cin >> amount;
+	}
 }
 
 istream& operator >> (istream&is, ProductClothes&x)
